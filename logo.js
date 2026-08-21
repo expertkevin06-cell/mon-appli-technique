@@ -210,3 +210,12 @@ function getLogoSVG(marque) {
     <text x="100" y="115" font-family="Arial" font-size="30" font-weight="bold" text-anchor="middle" fill="#fff">${marque.substring(0, 3).toUpperCase()}</text>
   </svg>`;
 }
+const LOGOS_SVG = {
+  // ... logos existants ...
+  
+  "BMW Moto": `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="85" fill="#000"/><circle cx="100" cy="100" r="75" fill="#fff"/><path d="M100 25 L100 100 L175 100 A75 75 0 0 0 100 25 Z" fill="#0066B1"/><path d="M100 175 L100 100 L25 100 A75 75 0 0 0 100 175 Z" fill="#0066B1"/><text x="100" y="190" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#fff">BMW MOTO</text></svg>`,
+  
+  "Honda Moto": `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="50" width="140" height="100" rx="10" fill="#CC0000"/><text x="100" y="110" font-family="Arial" font-size="60" font-weight="bold" text-anchor="middle" fill="#fff">H</text><text x="100" y="140" font-family="Arial" font-size="16" font-weight="bold" text-anchor="middle" fill="#fff">MOTO</text></svg>`,
+  
+  "Peugeot Moto": `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="85" fill="#1B3A6B"/><path d="M60 130 Q70 100 90 95 Q100 92 105 100 Q110 108 100 115 Q90 120 80 118" fill="none" stroke="#FFD700" stroke-width="4"/><text x="100" y="170" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFD700">PEUGEOT MOTO</text></svg>`
+};
