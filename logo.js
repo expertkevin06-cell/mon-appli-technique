@@ -5,7 +5,7 @@ const LOGOS_SVG = {
     <path d="M100 35 L145 80 L145 130 L100 165 L55 130 L55 80 Z" fill="none" stroke="#000" stroke-width="2"/>
     <text x="100" y="110" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#000">RENAULT</text>
   </svg>`,
-
+"Alpine": `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="60" width="160" height="80" rx="10" fill="#0055A4"/><text x="100" y="115" font-family="Arial" font-size="40" font-weight="bold" text-anchor="middle" fill="#fff">ALPINE</text></svg>`,
   "Peugeot": `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <circle cx="100" cy="100" r="85" fill="#1B3A6B"/>
     <path d="M60 130 Q70 100 90 95 Q100 92 105 100 Q110 108 100 115 Q90 120 80 118" fill="none" stroke="#FFD700" stroke-width="4"/>
