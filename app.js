@@ -43,62 +43,81 @@ function populateMarques() {
 }
 
 function applyFilters() {
-  // Récupérer les valeurs actuelles
   const marqueSelect = document.getElementById('filter-marque');
   const modeleSelect = document.getElementById('filter-modele');
   const moteurSelect = document.getElementById('filter-moteur');
   
+  // 1️ Récupérer la marque sélectionnée
   currentFilter.marque = marqueSelect.value;
   currentFilter.search = document.getElementById('search').value.toLowerCase();
   
-  // Sauvegarder les sélections actuelles
-  const modeleActuel = modeleSelect.value;
-  const moteurActuel = moteurSelect.value;
+  // 2️⃣ Sauvegarder les sélections AVANT de modifier
+  const modeleSelectionne = modeleSelect.value;
+  const moteurSelectionne = moteurSelect.value;
   
-  // Réinitialiser les listes
+  // 3️⃣ Réinitialiser les selects
   modeleSelect.innerHTML = '<option value="">Tous les modèles</option>';
   moteurSelect.innerHTML = '<option value="">Toutes motorisations</option>';
   modeleSelect.disabled = true;
   moteurSelect.disabled = true;
   
+  // 4️⃣ Si une marque est sélectionnée
   if (currentFilter.marque) {
-    // ✅ Activer le select modèle
     modeleSelect.disabled = false;
+    moteurSelect.disabled = false;
     
-    // Récupérer les modèles uniques
+    // 5️⃣ Récupérer les modèles pour cette marque
     const modeles = [...new Set(
       DATABASE.fiches
         .filter(f => f.marque === currentFilter.marque)
         .map(f => f.modele)
     )].sort();
     
-    modeles.forEach(m => {
-      const selected = (m === modeleActuel) ? 'selected' : '';
-      modeleSelect.innerHTML += `<option value="${m}" ${selected}>${m}</option>`;
+    // 6️⃣ Ajouter les modèles au select
+    modeles.forEach(modele => {
+      const option = document.createElement('option');
+      option.value = modele;
+      option.textContent = modele;
+      // ✅ RESTAURER la sélection si c'était ce modèle
+      if (modele === modeleSelectionne) {
+        option.selected = true;
+      }
+      modeleSelect.appendChild(option);
     });
     
-    // ✅ METTRE À JOUR currentFilter.modele
+    // 7️⃣ ✅ METTRE À JOUR currentFilter.modele APRÈS avoir ajouté les options
     currentFilter.modele = modeleSelect.value;
     
-    // ✅ Activer le select moteur
-    moteurSelect.disabled = false;
+    // 8️ Filtrer les fiches pour les motorisations
+    let fichesFiltrees = DATABASE.fiches.filter(f => 
+      f.marque === currentFilter.marque
+    );
     
-    // Filtrer par marque ET modèle si sélectionné
-    let fichesFiltrees = DATABASE.fiches.filter(f => f.marque === currentFilter.marque);
     if (currentFilter.modele) {
-      fichesFiltrees = fichesFiltrees.filter(f => f.modele === currentFilter.modele);
+      fichesFiltrees = fichesFiltrees.filter(f => 
+        f.modele === currentFilter.modele
+      );
     }
     
-    // Récupérer les motorisations
+    // 9️⃣ Récupérer les motorisations
     const moteurs = [...new Set(fichesFiltrees.map(f => f.motorisation))].sort();
     
-    moteurs.forEach(m => {
-      const selected = (m === moteurActuel) ? 'selected' : '';
-      moteurSelect.innerHTML += `<option value="${m}" ${selected}>${m}</option>`;
+    //  Ajouter les motorisations
+    moteurs.forEach(moteur => {
+      const option = document.createElement('option');
+      option.value = moteur;
+      option.textContent = moteur;
+      // ✅ RESTAURER la sélection
+      if (moteur === moteurSelectionne) {
+        option.selected = true;
+      }
+      moteurSelect.appendChild(option);
     });
     
-    // ✅ METTRE À JOUR currentFilter.moteur
+    // 1️⃣1️⃣ ✅ METTRE À JOUR currentFilter.moteur
     currentFilter.moteur = moteurSelect.value;
+    
+    console.log('✅ Filtres:', currentFilter.marque, '|', currentFilter.modele, '|', currentFilter.moteur);
   } else {
     currentFilter.modele = '';
     currentFilter.moteur = '';
@@ -153,15 +172,15 @@ function renderFiches() {
       </div>
       
       <div class="fiche-modele" style="font-size:1.1em;font-weight:bold;margin:8px 0;">
-         ${f.modele} (${f.annees})
+        🚗 ${f.modele} (${f.annees})
       </div>
       
       <div class="fiche-moteur" style="margin:5px 0;">
-         <strong>Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
+        <strong>⚙️ Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
       </div>
       
       <div style="margin:5px 0;">
-         <strong>Campagne :</strong> ${f.campagne}
+        <strong>📋 Campagne :</strong> ${f.campagne}
       </div>
       
       <div class="fiche-titre" style="margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px;">
@@ -169,7 +188,7 @@ function renderFiches() {
       </div>
       
       <div style="margin:8px 0;">
-        <strong>📋 Description :</strong><br>
+        <strong>📝 Description :</strong><br>
         <span style="color:#ccc;font-size:0.9em;">${f.description}</span>
       </div>
       
@@ -202,8 +221,6 @@ function renderFiches() {
 }
 
 function showFiche(id) {
-  // Plus nécessaire car les détails sont déjà affichés
-  // Mais on garde pour compatibilité
   const f = DATABASE.fiches.find(x => x.id === id);
   if (!f) return;
   
@@ -219,7 +236,7 @@ function showFiche(id) {
     <p><strong>💰 Coût :</strong> ${f.cout}</p>
     <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 PDF</button>
-      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">️ Supprimer</button>` : ''}
+      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">🗑️ Supprimer</button>` : ''}
     </div>
   `;
   document.getElementById('modal').classList.add('active');
@@ -292,7 +309,7 @@ function exportData() {
   a.href = url;
   a.download = `backup-${new Date().toISOString().split('T')[0]}.json`;
   a.click();
-  showToast('💾 Export réussi');
+  showToast(' Export réussi');
 }
 
 function importData() {
@@ -312,7 +329,7 @@ function importData() {
           showToast('📥 Import réussi');
         }
       } catch (err) {
-        showToast('❌ Erreur');
+        showToast('❌ Erreur import');
       }
     };
     reader.readAsText(file);
@@ -321,7 +338,7 @@ function importData() {
 }
 
 function resetData() {
-  if (!confirm('Réinitialiser ?')) return;
+  if (!confirm('⚠️ Réinitialiser toutes les fiches ?')) return;
   localStorage.removeItem('techauto_fiches');
   location.reload();
 }
@@ -342,7 +359,7 @@ function shareMail() {
 
 function copyLink() {
   navigator.clipboard.writeText(currentShareUrl).then(() => {
-    showToast('📋 Copié');
+    showToast('📋 Lien copié');
   });
 }
 
