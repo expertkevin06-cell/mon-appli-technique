@@ -130,6 +130,25 @@ header p {
   transform: scale(0.95);
 }
 
+/* Filtre Catégorie */
+.category-filter {
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  text-align: center;
+}
+
+.category-filter select {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 2px solid #c0392b;
+  background: #2c2c2c;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 200px;
+}
+
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -170,7 +189,7 @@ header p {
 
 .fiches-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 15px;
   padding: 20px;
   max-width: 1400px;
@@ -183,12 +202,7 @@ header p {
   padding: 18px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
   border-left: 5px solid #c0392b;
-  cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.fiche:active {
-  transform: scale(0.98);
 }
 
 .fiche:hover {
@@ -210,10 +224,9 @@ header p {
   font-weight: bold;
 }
 
-.fiche-marque img {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
+.fiche-marque svg {
+  width: 40px;
+  height: 40px;
 }
 
 .fiche-type {
