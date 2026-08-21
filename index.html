@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#c0392b">
+  <title>Technique Auto by Kevin</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <div class="splash-logo">🚗</div>
+      <h1>Technique Auto</h1>
+      <p>by Kevin</p>
+      <div class="splash-loader"></div>
+    </div>
+  </div>
+
+  <!-- Application -->
+  <div id="app" style="display:none;">
+    <div id="background-overlay"></div>
+    
+    <!-- Header -->
+    <header>
+      <h1>🚗 Technique Auto by Kevin</h1>
+      <p>Rappels & pannes (2016-2026)</p>
+      <button class="admin-btn" onclick="openAdmin()">🔐 Admin</button>
+      <button class="admin-btn" style="right: 110px;" onclick="openShare()">📤 Partager</button>
+    </header>
+
+    <!-- Filtres -->
+    <div class="filters">
+      <select id="filter-marque" onchange="applyFilters()">
+        <option value="">Toutes les marques</option>
+      </select>
+      <select id="filter-modele" onchange="applyFilters()" disabled>
+        <option value="">Tous les modèles</option>
+      </select>
+      <select id="filter-moteur" onchange="applyFilters()" disabled>
+        <option value="">Toutes motorisations</option>
+      </select>
+    </div>
+
+    <!-- Recherche -->
+    <input type="text" class="search-box" id="search" placeholder="🔍 Rechercher une panne, un symptôme..." oninput="applyFilters()">
+    
+    <!-- Stats -->
+    <div class="stats" id="stats">Chargement...</div>
+    
+    <!-- Bouton Export PDF -->
+    <button class="btn btn-primary" onclick="exportAllPDF()" style="margin: 0 auto 15px; display:block;">📄 Exporter la liste en PDF</button>
+
+    <!-- Panneau Admin -->
+    <div class="admin-panel" id="admin-panel">
+      <h2> Mode Admin</h2>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin:15px 0;">
+        <button class="btn btn-success" onclick="exportData()">💾 Exporter mes ajouts</button>
+        <button class="btn btn-primary" onclick="importData()">📥 Importer des fiches</button>
+        <button class="btn btn-danger" onclick="resetData()"> Réinitialiser</button>
+      </div>
+      <form class="admin-form" id="admin-form">
+        <select id="admin-marque" required><option value="">Marque</option></select>
+        <input type="text" id="admin-modele" placeholder="Modèle" required>
+        <input type="text" id="admin-motorisation" placeholder="Motorisation (ex: 1.5 BlueHDi)" required>
+        <select id="admin-type-moteur" required>
+          <option value="Essence">Essence</option>
+          <option value="Diesel">Diesel</option>
+          <option value="Hybride">Hybride</option>
+          <option value="Électrique">Électrique</option>
+        </select>
+        <input type="text" id="admin-annees" placeholder="Années (ex: 2018-2021)" required>
+        <input type="text" id="admin-campagne" placeholder="N° campagne" required>
+        <select id="admin-type-fiche" required>
+          <option value="Rappel">Rappel</option>
+          <option value="Panne connue">Panne connue</option>
+        </select>
+        <input type="text" id="admin-titre" placeholder="Titre du problème" required>
+        <textarea id="admin-description" placeholder="Description détaillée" required></textarea>
+        <select id="admin-gravite" required>
+          <option value="Faible">Faible</option>
+          <option value="Moyenne">Moyenne</option>
+          <option value="Grave">Grave</option>
+          <option value="Très grave">Très grave</option>
+        </select>
+        <input type="text" id="admin-solution" placeholder="Solution" required>
+        <input type="text" id="admin-cout" placeholder="Coût / Prise en charge" required>
+        <button type="submit" class="btn btn-success">💾 Ajouter la fiche</button>
+      </form>
+    </div>
+
+    <!-- Liste des fiches -->
+    <div class="fiches-container" id="fiches-container"></div>
+
+    <!-- Modals -->
+    <div class="modal" id="modal">
+      <div class="modal-content" id="modal-content"></div>
+    </div>
+    
+    <div class="modal" id="modal-admin">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('modal-admin')">×</button>
+        <h2>🔐 Accès Admin</h2>
+        <input type="password" id="admin-password" placeholder="Mot de passe" style="width:100%;padding:10px;border-radius:8px;background:#1a1a1a;color:#fff;border:1px solid #555;margin-bottom:15px;">
+        <button class="btn btn-primary" onclick="loginAdmin()">Se connecter</button>
+      </div>
+    </div>
+    
+    <div class="modal" id="modal-share">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal('modal-share')">×</button>
+        <h2>📤 Partager l'application</h2>
+        <p>Envoyez ce lien par SMS ou Email.</p>
+        <div id="share-link-container" style="margin:20px 0; word-break:break-all; background:#1a1a1a; padding:10px; border-radius:8px; font-family:monospace;"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn btn-success" onclick="shareSMS()"> SMS</button>
+          <button class="btn btn-primary" onclick="shareMail()"> Mail</button>
+          <button class="btn btn-primary" onclick="copyLink()"> Copier</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
