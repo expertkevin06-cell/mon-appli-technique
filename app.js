@@ -1,7 +1,10 @@
+// ============================================================
+// TECHNIQUE AUTO BY KEVIN - Application principale
+// ============================================================
+
 let isAdmin = false;
 let currentFilter = { categorie: 'Auto', marque: '', modele: '', moteur: '', search: '' };
 let currentShareUrl = window.location.href;
-let marquesChargees = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🚀 Démarrage application...');
@@ -19,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadFichesFromLocal();
   
-  // Initialiser les filtres
   const categorieSelect = document.getElementById('filter-categorie');
   categorieSelect.value = 'Auto';
   currentFilter.categorie = 'Auto';
@@ -34,19 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
   
   console.log('✅ Application prête - ' + DATABASE.fiches.length + ' fiches');
   showToast('✅ ' + DATABASE.fiches.length + ' fiches chargées');
+  
+  setTimeout(() => {
+    if (navigator.onLine) {
+      showToast('🟢 En ligne - Synchro auto activée');
+    } else {
+      showToast('🔴 Mode hors ligne');
+    }
+  }, 3000);
 });
 
 function populateMarques() {
   const select = document.getElementById('filter-marque');
   const adminSelect = document.getElementById('admin-marque');
   
-  // Sauvegarder la sélection actuelle
   const marqueActuelle = select.value;
   
   select.innerHTML = '<option value="">Toutes les marques</option>';
   adminSelect.innerHTML = '<option value="">Marque</option>';
   
-  // Déterminer quelles marques afficher selon la catégorie
   let marques;
   if (currentFilter.categorie === 'Moto') {
     marques = DATABASE.marquesMoto;
@@ -59,7 +67,6 @@ function populateMarques() {
     adminSelect.innerHTML += `<option value="${m}">${m}</option>`;
   });
   
-  // Restaurer la sélection si elle existe encore
   if (marqueActuelle && Object.keys(marques).includes(marqueActuelle)) {
     select.value = marqueActuelle;
     currentFilter.marque = marqueActuelle;
@@ -67,8 +74,7 @@ function populateMarques() {
     currentFilter.marque = '';
   }
   
-  marquesChargees = true;
-  console.log('✅ Marques chargées pour catégorie:', currentFilter.categorie, '- Total:', Object.keys(marques).length);
+  console.log('✅ Marques chargées:', Object.keys(marques).length);
 }
 
 function applyFilters() {
@@ -77,12 +83,10 @@ function applyFilters() {
   const modeleSelect = document.getElementById('filter-modele');
   const moteurSelect = document.getElementById('filter-moteur');
   
-  // 1️ Récupérer la catégorie
   const nouvelleCategorie = categorieSelect.value;
   const categorieChanged = nouvelleCategorie !== currentFilter.categorie;
   currentFilter.categorie = nouvelleCategorie;
   
-  // 2️ Si la catégorie a changé, recharger les marques
   if (categorieChanged) {
     currentFilter.marque = '';
     currentFilter.modele = '';
@@ -90,15 +94,12 @@ function applyFilters() {
     populateMarques();
   }
   
-  // 3️⃣ Récupérer la marque
   currentFilter.marque = marqueSelect.value;
   currentFilter.search = document.getElementById('search').value.toLowerCase();
   
-  // 4️ Sauvegarder les sélections modèle et moteur
   const modeleSelectionne = modeleSelect.value;
   const moteurSelectionne = moteurSelect.value;
   
-  // 5️⃣ Réinitialiser les selects modèle et moteur
   modeleSelect.innerHTML = '<option value="">Tous les modèles</option>';
   moteurSelect.innerHTML = '<option value="">Toutes motorisations</option>';
   modeleSelect.disabled = true;
@@ -106,36 +107,30 @@ function applyFilters() {
   currentFilter.modele = '';
   currentFilter.moteur = '';
   
-  // 6️⃣ Si une marque est sélectionnée
   if (currentFilter.marque) {
     modeleSelect.disabled = false;
     moteurSelect.disabled = false;
     
-    // 7️⃣ Récupérer les modèles pour cette marque ET catégorie
     const modeles = [...new Set(
       DATABASE.fiches
         .filter(f => f.categorie === currentFilter.categorie && f.marque === currentFilter.marque)
         .map(f => f.modele)
     )].sort();
     
-    console.log(' Modèles trouvés pour', currentFilter.marque, ':', modeles.length);
+    console.log('📋 Modèles trouvés pour', currentFilter.marque, ':', modeles.length);
     
-    // 8️⃣ Ajouter les modèles au select
     modeles.forEach(modele => {
       const option = document.createElement('option');
       option.value = modele;
       option.textContent = modele;
-      // Restaurer la sélection
       if (modele === modeleSelectionne) {
         option.selected = true;
       }
       modeleSelect.appendChild(option);
     });
     
-    // 9️ Mettre à jour currentFilter.modele
     currentFilter.modele = modeleSelect.value;
     
-    // 🔟 Filtrer les fiches pour les motorisations
     let fichesFiltrees = DATABASE.fiches.filter(f => 
       f.categorie === currentFilter.categorie && f.marque === currentFilter.marque
     );
@@ -144,24 +139,20 @@ function applyFilters() {
       fichesFiltrees = fichesFiltrees.filter(f => f.modele === currentFilter.modele);
     }
     
-    // 1️⃣1️ Récupérer les motorisations
     const moteurs = [...new Set(fichesFiltrees.map(f => f.motorisation))].sort();
     
-    console.log('⚙️ Motorisations trouvées pour', currentFilter.marque, currentFilter.modele, ':', moteurs.length);
+    console.log('⚙️ Motorisations trouvées:', moteurs.length);
     
-    // 1️⃣2️ Ajouter les motorisations
     moteurs.forEach(moteur => {
       const option = document.createElement('option');
       option.value = moteur;
       option.textContent = moteur;
-      // Restaurer la sélection
       if (moteur === moteurSelectionne) {
         option.selected = true;
       }
       moteurSelect.appendChild(option);
     });
     
-    // 1️⃣3️⃣ Mettre à jour currentFilter.moteur
     currentFilter.moteur = moteurSelect.value;
     
     console.log('✅ Filtres:', currentFilter.categorie, '|', currentFilter.marque, '|', currentFilter.modele, '|', currentFilter.moteur);
@@ -220,11 +211,11 @@ function renderFiches() {
       </div>
       
       <div class="fiche-modele" style="font-size:1.1em;font-weight:bold;margin:8px 0;">
-         ${f.modele} (${f.annees})
+        🚗 ${f.modele} (${f.annees})
       </div>
       
       <div class="fiche-moteur" style="margin:5px 0;">
-        <strong>️ Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
+        <strong>⚙️ Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
       </div>
       
       <div style="margin:5px 0;">
@@ -250,8 +241,8 @@ function renderFiches() {
       </div>
       
       <div style="margin:8px 0;">
-        <strong> Date :</strong> ${f.date} | 
-        <strong>👥 Véhicules :</strong> ${f.nb_vehicules?.toLocaleString('fr-FR') || 'N/A'}
+        <strong>📅 Date :</strong> ${f.date} | 
+        <strong> Véhicules :</strong> ${f.nb_vehicules?.toLocaleString('fr-FR') || 'N/A'}
       </div>
       
       <div class="fiche-gravite gravite-${f.gravite.toLowerCase().replace(' ', '-')}" style="margin:10px 0;">
@@ -260,7 +251,7 @@ function renderFiches() {
       
       <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
         <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 Télécharger PDF</button>
-        ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">🗑️ Supprimer</button>` : ''}
+        ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">️ Supprimer</button>` : ''}
       </div>
     </div>
   `).join('');
@@ -289,7 +280,7 @@ function showFiche(id) {
     <p><strong>💰 Coût :</strong> ${f.cout}</p>
     <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 PDF</button>
-      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">️ Supprimer</button>` : ''}
+      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">🗑️ Supprimer</button>` : ''}
     </div>
   `;
   document.getElementById('modal').classList.add('active');
@@ -380,7 +371,7 @@ function importData() {
           DATABASE.fiches = data;
           saveFichesLocally();
           applyFilters();
-          showToast('📥 Import réussi');
+          showToast(' Import réussi');
         }
       } catch (err) {
         showToast('❌ Erreur');
