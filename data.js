@@ -1,16 +1,3 @@
-    "type": "Panne connue",
-    "titre": "Catalyseur",
-    "description": "Catalyseur colmaté.",
-    "gravite": "Grave",
-    "date": "2022-05-19",
-    "nb_vehicules": 33080,
-    "solution": "Remplacement catalyseur",
-    "cout": "Variable selon concession"
-  },
-  {
-    "id": 1138,
-    "categorie": "Auto",
-    "marque": "Alfa Romeo",
     "modele": "Giulietta",
     "motorisation": "1.6 Diesel 120ch Diesel",
     "type_moteur": "Diesel",
@@ -3983,4 +3970,17 @@ if (typeof window !== 'undefined') {
 
 console.log('📊 Database Technique Auto by Kevin - 1354 fiches');
 console.log('🚗 Voitures + 🏍️ Motos/Scooters | 2016-2026');
+~/technique-auto $ cd technique-auto
+node generate-data.js
+bash: cd: technique-auto: No such file or directory
+ Génération du fichier data.js...
+✅ Fichier data.js généré avec succès !
+📊 Total: 1354 fiches
+
+📊 Répartition:
+   ⛽ Essence: 543
+   ️ Diesel: 368
+   🔋 Hybride: 108
+   ⚡ Électrique: 331
+    GPL: 4
 ~/technique-auto $
