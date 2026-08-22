@@ -3,28 +3,28 @@ const DATABASE = {
   marques: {
     "Peugeot": { logo: "🇫🇷", couleur: "#1B3A6B" },
     "Renault": { logo: "🇫🇷", couleur: "#FFCC33" },
-    "Citroën": { logo: "🇫🇷", couleur: "#CC0000" },
+    "Citroën": { logo: "🇫", couleur: "#CC0000" },
     "Volkswagen": { logo: "🇩🇪", couleur: "#001E50" },
     "BMW": { logo: "🇩🇪", couleur: "#0066B1" },
     "Mercedes": { logo: "🇩", couleur: "#333333" },
-    "Audi": { logo: "🇩🇪", couleur: "#BB0A30" },
+    "Audi": { logo: "🇪", couleur: "#BB0A30" },
     "Ford": { logo: "🇺🇸", couleur: "#003478" },
-    "Toyota": { logo: "🇯", couleur: "#EB0A1E" },
-    "Nissan": { logo: "🇵", couleur: "#C3002F" },
-    "Hyundai": { logo: "🇰🇷", couleur: "#002C5F" },
+    "Toyota": { logo: "🇯🇵", couleur: "#EB0A1E" },
+    "Nissan": { logo: "🇯", couleur: "#C3002F" },
+    "Hyundai": { logo: "🇷", couleur: "#002C5F" },
     "Kia": { logo: "🇰🇷", couleur: "#05141F" },
     "Tesla": { logo: "⚡", couleur: "#CC0000" },
     "Dacia": { logo: "🇷🇴", couleur: "#003DA5" },
-    "Fiat": { logo: "🇹", couleur: "#9D0A0E" },
+    "Fiat": { logo: "🇮", couleur: "#9D0A0E" },
     "Opel": { logo: "🇩🇪", couleur: "#FFD700" },
     "Volvo": { logo: "🇸🇪", couleur: "#003057" },
-    "Mazda": { logo: "🇵", couleur: "#B00D1E" },
+    "Mazda": { logo: "🇯🇵", couleur: "#B00D1E" },
     "Honda": { logo: "🇯🇵", couleur: "#CC0000" },
     "Seat": { logo: "🇪🇸", couleur: "#FFD700" },
-    "Skoda": { logo: "🇨", couleur: "#4BA82E" },
-    "Mini": { logo: "🇬🇧", couleur: "#000000" },
+    "Skoda": { logo: "🇨🇿", couleur: "#4BA82E" },
+    "Mini": { logo: "🇬", couleur: "#000000" },
     "Alfa Romeo": { logo: "🇮🇹", couleur: "#8B0000" },
-    "Jaguar": { logo: "🇬", couleur: "#000000" },
+    "Jaguar": { logo: "🇬🇧", couleur: "#000000" },
     "Alpine": { logo: "🇷", couleur: "#0055A4" },
     "BYD": { logo: "🇨🇳", couleur: "#003DA5" },
     "Jeep": { logo: "🇺🇸", couleur: "#1E5631" }
@@ -33,12 +33,11 @@ const DATABASE = {
     "Yamaha": { logo: "🇯", couleur: "#003DA5" },
     "Kawasaki": { logo: "🇵", couleur: "#00A651" },
     "BMW Moto": { logo: "🇩🇪", couleur: "#0066B1" },
-    "Honda Moto": { logo: "🇯", couleur: "#CC0000" }
+    "Honda Moto": { logo: "🇯🇵", couleur: "#CC0000" }
   },
   fiches: []
 };
 
-// Pannes par marque et type moteur
 const PANNES = {
   "Peugeot": {
     "Essence": [
@@ -51,12 +50,8 @@ const PANNES = {
       {t:"FAP 1.5 BlueHDi",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
       {t:"AdBlue défaillant",d:"Démarrage impossible",s:"Remplacement réservoir",g:"Grave"}
     ],
-    "Hybride": [
-      {t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}
-    ],
-    "Électrique": [
-      {t:"Batterie haute tension",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}
-    ]
+    "Hybride": [{t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}],
+    "Électrique": [{t:"Batterie haute tension",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Renault": {
     "Essence": [
@@ -67,12 +62,8 @@ const PANNES = {
       {t:"Boîte EDC",d:"À-coups, voyant",s:"Remplacement mécatronique",g:"Grave"},
       {t:"Injecteurs 1.5 dCi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}
     ],
-    "Hybride": [
-      {t:"Système E-Tech",d:"Perte autonomie",s:"Diagnostic système",g:"Grave"}
-    ],
-    "Électrique": [
-      {t:"Batterie Zoe",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}
-    ]
+    "Hybride": [{t:"Système E-Tech",d:"Perte autonomie",s:"Diagnostic système",g:"Grave"}],
+    "Électrique": [{t:"Batterie Zoe",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}]
   },
   "Volkswagen": {
     "Essence": [
@@ -83,25 +74,15 @@ const PANNES = {
       {t:"Dieselgate",d:"Logiciel truqueur",s:"Mise à jour logiciel",g:"Grave"},
       {t:"Boîte DSG7",d:"Mécatronique HS",s:"Remplacement",g:"Grave"}
     ],
-    "Électrique": [
-      {t:"Batterie ID.3",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}
-    ]
+    "Électrique": [{t:"Batterie ID.3",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "BMW": {
-    "Essence": [
-      {t:"Chaîne distribution N47",d:"Rupture chaîne",s:"Remplacement kit",g:"Très grave"}
-    ],
-    "Diesel": [
-      {t:"Chaîne N47",d:"Rupture côté boîte",s:"Remplacement kit",g:"Très grave"}
-    ]
+    "Essence": [{t:"Chaîne distribution N47",d:"Rupture chaîne",s:"Remplacement kit",g:"Très grave"}],
+    "Diesel": [{t:"Chaîne N47",d:"Rupture côté boîte",s:"Remplacement kit",g:"Très grave"}]
   },
   "Mercedes": {
-    "Essence": [
-      {t:"Boîte 7G-Tronic",d:"À-coups, calages",s:"Remplacement boîte",g:"Grave"}
-    ],
-    "Diesel": [
-      {t:"Injecteurs OM651",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}
-    ]
+    "Essence": [{t:"Boîte 7G-Tronic",d:"À-coups, calages",s:"Remplacement boîte",g:"Grave"}],
+    "Diesel": [{t:"Injecteurs OM651",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}]
   },
   "Tesla": {
     "Électrique": [
@@ -110,31 +91,16 @@ const PANNES = {
     ]
   },
   "Toyota": {
-    "Hybride": [
-      {t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}
-    ]
+    "Hybride": [{t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}]
   },
   "Ford": {
-    "Essence": [
-      {t:"Courroie 1.0 EcoBoost",d:"Courroie dans huile",s:"Remplacement courroie",g:"Très grave"}
-    ],
-    "Diesel": [
-      {t:"Boîte Powershift",d:"À-coups, embrayage",s:"Remplacement",g:"Grave"}
-    ]
+    "Essence": [{t:"Courroie 1.0 EcoBoost",d:"Courroie dans huile",s:"Remplacement courroie",g:"Très grave"}],
+    "Diesel": [{t:"Boîte Powershift",d:"À-coups, embrayage",s:"Remplacement",g:"Grave"}]
   },
-  "Hyundai": {
-    "Diesel": [
-      {t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}
-    ]
-  },
-  "Kia": {
-    "Diesel": [
-      {t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}
-    ]
-  }
+  "Hyundai": {"Diesel": [{t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}]},
+  "Kia": {"Diesel": [{t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement",g:"Grave"}]}
 };
 
-// Modèles avec motorisations
 const MODELES = {
   "Peugeot": {
     "208": ["1.2 PureTech 100ch Essence", "1.5 BlueHDi 100ch Diesel", "e-208 100kW Électrique"],
@@ -182,7 +148,6 @@ const MODELES = {
   }
 };
 
-// Génération des fiches
 function genererFiches() {
   let id = 1;
   const annees = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
@@ -191,18 +156,15 @@ function genererFiches() {
     for (const [modele, motorisations] of Object.entries(modeles)) {
       for (const motorisation of motorisations) {
         let typeMoteur = "Essence";
-        if (motorisation.toLowerCase().includes('électrique') || motorisation.toLowerCase().includes('electric')) {
-          typeMoteur = "Électrique";
-        } else if (motorisation.toLowerCase().includes('hybrid')) {
-          typeMoteur = "Hybride";
-        } else if (motorisation.toLowerCase().includes('diesel') || motorisation.toLowerCase().includes('tdi') || motorisation.toLowerCase().includes('hdi') || motorisation.toLowerCase().includes('dci')) {
-          typeMoteur = "Diesel";
-        }
+        const m = motorisation.toLowerCase();
+        if (m.includes('électrique') || m.includes('electric')) typeMoteur = "Électrique";
+        else if (m.includes('hybrid')) typeMoteur = "Hybride";
+        else if (m.includes('diesel') || m.includes('tdi') || m.includes('hdi') || m.includes('dci')) typeMoteur = "Diesel";
         
         const pannesMarque = PANNES[marque];
         const pannes = pannesMarque ? (pannesMarque[typeMoteur] || pannesMarque["Essence"]) : [];
-        
         const nbFiches = Math.max(pannes.length, 3);
+        
         for (let i = 0; i < nbFiches; i++) {
           const panne = pannes[i % pannes.length] || {t:"Révision générale",d:"Entretien périodique",s:"Vidange + filtres",g:"Faible"};
           const anneeDebut = annees[Math.floor(Math.random() * annees.length)];
@@ -215,13 +177,13 @@ function genererFiches() {
             modele: modele,
             motorisation: motorisation,
             type_moteur: typeMoteur,
-            annees: `${anneeDebut}-${anneeFin}`,
-            campagne: `${marque.substring(0,3).toUpperCase()}-${2016+Math.floor(Math.random()*10)}-${String(1+Math.floor(Math.random()*999)).padStart(3,'0')}`,
+            annees: anneeDebut + "-" + anneeFin,
+            campagne: marque.substring(0,3).toUpperCase() + "-" + (2016+Math.floor(Math.random()*10)) + "-" + String(1+Math.floor(Math.random()*999)).padStart(3,'0'),
             type: Math.random() > 0.4 ? "Panne connue" : "Rappel",
             titre: panne.t,
             description: panne.d,
             gravite: panne.g,
-            date: `${2016+Math.floor(Math.random()*10)}-${String(1+Math.floor(Math.random()*12)).padStart(2,'0')}-${String(1+Math.floor(Math.random()*28)).padStart(2,'0')}`,
+            date: (2016+Math.floor(Math.random()*10)) + "-" + String(1+Math.floor(Math.random()*12)).padStart(2,'0') + "-" + String(1+Math.floor(Math.random()*28)).padStart(2,'0'),
             nb_vehicules: 1000 + Math.floor(Math.random() * 50000),
             solution: panne.s,
             cout: Math.random() > 0.5 ? "Gratuit (prise en charge constructeur)" : "Variable selon concession"
@@ -230,7 +192,6 @@ function genererFiches() {
       }
     }
   }
-  
   console.log('✅ ' + DATABASE.fiches.length + ' fiches générées');
 }
 
