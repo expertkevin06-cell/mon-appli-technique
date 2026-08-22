@@ -1,5 +1,5 @@
 // ============================================================
-// TECHNIQUE AUTO BY KEVIN - Application principale
+// TECHNIQUE AUTO BY KEVIN - Application principale v3
 // ============================================================
 
 let isAdmin = false;
@@ -7,7 +7,7 @@ let currentFilter = { categorie: 'Auto', marque: '', modele: '', moteur: '', sea
 let currentShareUrl = window.location.href;
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('🚀 Démarrage application...');
+  console.log(' Démarrage application...');
   
   setTimeout(() => {
     document.getElementById('splash-screen').classList.add('hidden');
@@ -22,33 +22,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
   loadFichesFromLocal();
   
+  // ️ CORRECTION : Vérifier que toutes les fiches ont une catégorie
+  DATABASE.fiches.forEach(f => {
+    if (!f.categorie) {
+      f.categorie = 'Auto';
+    }
+  });
+  
   const categorieSelect = document.getElementById('filter-categorie');
-  categorieSelect.value = 'Auto';
+  if (categorieSelect) {
+    categorieSelect.value = 'Auto';
+  }
   currentFilter.categorie = 'Auto';
   
   populateMarques();
   applyFilters();
   
-  document.getElementById('admin-form').addEventListener('submit', addFiche);
-  document.getElementById('admin-password').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') loginAdmin();
-  });
+  const adminForm = document.getElementById('admin-form');
+  if (adminForm) {
+    adminForm.addEventListener('submit', addFiche);
+  }
+  
+  const adminPassword = document.getElementById('admin-password');
+  if (adminPassword) {
+    adminPassword.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') loginAdmin();
+    });
+  }
   
   console.log('✅ Application prête - ' + DATABASE.fiches.length + ' fiches');
   showToast('✅ ' + DATABASE.fiches.length + ' fiches chargées');
-  
-  setTimeout(() => {
-    if (navigator.onLine) {
-      showToast('🟢 En ligne - Synchro auto activée');
-    } else {
-      showToast('🔴 Mode hors ligne');
-    }
-  }, 3000);
 });
 
 function populateMarques() {
   const select = document.getElementById('filter-marque');
   const adminSelect = document.getElementById('admin-marque');
+  
+  if (!select || !adminSelect) return;
   
   const marqueActuelle = select.value;
   
@@ -57,9 +67,9 @@ function populateMarques() {
   
   let marques;
   if (currentFilter.categorie === 'Moto') {
-    marques = DATABASE.marquesMoto;
+    marques = DATABASE.marquesMoto || {};
   } else {
-    marques = DATABASE.marques;
+    marques = DATABASE.marques || {};
   }
   
   Object.keys(marques).sort().forEach(m => {
@@ -73,8 +83,6 @@ function populateMarques() {
   } else {
     currentFilter.marque = '';
   }
-  
-  console.log('✅ Marques chargées:', Object.keys(marques).length);
 }
 
 function applyFilters() {
@@ -82,6 +90,8 @@ function applyFilters() {
   const marqueSelect = document.getElementById('filter-marque');
   const modeleSelect = document.getElementById('filter-modele');
   const moteurSelect = document.getElementById('filter-moteur');
+  
+  if (!categorieSelect || !marqueSelect || !modeleSelect || !moteurSelect) return;
   
   const nouvelleCategorie = categorieSelect.value;
   const categorieChanged = nouvelleCategorie !== currentFilter.categorie;
@@ -95,7 +105,8 @@ function applyFilters() {
   }
   
   currentFilter.marque = marqueSelect.value;
-  currentFilter.search = document.getElementById('search').value.toLowerCase();
+  const searchInput = document.getElementById('search');
+  currentFilter.search = searchInput ? searchInput.value.toLowerCase() : '';
   
   const modeleSelectionne = modeleSelect.value;
   const moteurSelectionne = moteurSelect.value;
@@ -117,15 +128,11 @@ function applyFilters() {
         .map(f => f.modele)
     )].sort();
     
-    console.log('📋 Modèles trouvés pour', currentFilter.marque, ':', modeles.length);
-    
     modeles.forEach(modele => {
       const option = document.createElement('option');
       option.value = modele;
       option.textContent = modele;
-      if (modele === modeleSelectionne) {
-        option.selected = true;
-      }
+      if (modele === modeleSelectionne) option.selected = true;
       modeleSelect.appendChild(option);
     });
     
@@ -141,21 +148,15 @@ function applyFilters() {
     
     const moteurs = [...new Set(fichesFiltrees.map(f => f.motorisation))].sort();
     
-    console.log('⚙️ Motorisations trouvées:', moteurs.length);
-    
     moteurs.forEach(moteur => {
       const option = document.createElement('option');
       option.value = moteur;
       option.textContent = moteur;
-      if (moteur === moteurSelectionne) {
-        option.selected = true;
-      }
+      if (moteur === moteurSelectionne) option.selected = true;
       moteurSelect.appendChild(option);
     });
     
     currentFilter.moteur = moteurSelect.value;
-    
-    console.log('✅ Filtres:', currentFilter.categorie, '|', currentFilter.marque, '|', currentFilter.modele, '|', currentFilter.moteur);
   }
   
   updateBackground();
@@ -164,7 +165,9 @@ function applyFilters() {
 
 function updateBackground() {
   const overlay = document.getElementById('background-overlay');
-  const marques = currentFilter.categorie === 'Moto' ? DATABASE.marquesMoto : DATABASE.marques;
+  if (!overlay) return;
+  
+  const marques = currentFilter.categorie === 'Moto' ? (DATABASE.marquesMoto || {}) : (DATABASE.marques || {});
   
   if (currentFilter.marque && marques[currentFilter.marque]) {
     const c = marques[currentFilter.marque].couleur;
@@ -178,9 +181,16 @@ function updateBackground() {
 
 function renderFiches() {
   const container = document.getElementById('fiches-container');
+  const stats = document.getElementById('stats');
+  if (!container || !stats) return;
   
+  // 🛡️ CORRECTION : Si aucune fiche ne correspond à la catégorie, afficher toutes les fiches
   let fiches = DATABASE.fiches.filter(f => {
-    if (currentFilter.categorie && f.categorie !== currentFilter.categorie) return false;
+    if (currentFilter.categorie && f.categorie !== currentFilter.categorie) {
+      // Si la catégorie ne match pas, on vérifie si c'est parce que la fiche n'a pas de catégorie
+      if (!f.categorie) return true; // Afficher les fiches sans catégorie
+      return false;
+    }
     if (currentFilter.marque && f.marque !== currentFilter.marque) return false;
     if (currentFilter.modele && f.modele !== currentFilter.modele) return false;
     if (currentFilter.moteur && f.motorisation !== currentFilter.moteur) return false;
@@ -191,14 +201,14 @@ function renderFiches() {
     return true;
   });
   
-  document.getElementById('stats').textContent = `${fiches.length} fiche(s) sur ${DATABASE.fiches.length}`;
+  stats.textContent = `${fiches.length} fiche(s) sur ${DATABASE.fiches.length}`;
   
   if (fiches.length === 0) {
     container.innerHTML = '<p style="text-align:center;padding:40px;color:#888;grid-column:1/-1;">Aucune fiche trouvée.</p>';
     return;
   }
   
-  const marques = currentFilter.categorie === 'Moto' ? DATABASE.marquesMoto : DATABASE.marques;
+  const marques = currentFilter.categorie === 'Moto' ? (DATABASE.marquesMoto || {}) : (DATABASE.marques || {});
   
   container.innerHTML = fiches.map(f => `
     <div class="fiche" style="border-left-color:${marques[f.marque]?.couleur || '#c0392b'}">
@@ -209,63 +219,52 @@ function renderFiches() {
         </div>
         <div class="fiche-type type-${f.type === 'Rappel' ? 'rappel' : 'panne'}">${f.type}</div>
       </div>
-      
       <div class="fiche-modele" style="font-size:1.1em;font-weight:bold;margin:8px 0;">
-        🚗 ${f.modele} (${f.annees})
+        ${f.modele} (${f.annees})
       </div>
-      
       <div class="fiche-moteur" style="margin:5px 0;">
         <strong>⚙️ Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
       </div>
-      
       <div style="margin:5px 0;">
         <strong>📋 Campagne :</strong> ${f.campagne}
       </div>
-      
       <div class="fiche-titre" style="margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px;">
-        <strong>⚠️ ${f.titre}</strong>
+        <strong>️ ${f.titre}</strong>
       </div>
-      
       <div style="margin:8px 0;">
         <strong>📝 Description :</strong><br>
         <span style="color:#ccc;font-size:0.9em;">${f.description}</span>
       </div>
-      
       <div style="margin:8px 0;">
         <strong>✅ Solution :</strong><br>
         <span style="color:#27ae60;font-size:0.9em;">${f.solution}</span>
       </div>
-      
       <div style="margin:8px 0;">
         <strong>💰 Coût :</strong> <span style="color:#f39c12;">${f.cout}</span>
       </div>
-      
       <div style="margin:8px 0;">
         <strong>📅 Date :</strong> ${f.date} | 
         <strong> Véhicules :</strong> ${f.nb_vehicules?.toLocaleString('fr-FR') || 'N/A'}
       </div>
-      
       <div class="fiche-gravite gravite-${f.gravite.toLowerCase().replace(' ', '-')}" style="margin:10px 0;">
         ⚠️ Gravité : ${f.gravite}
       </div>
-      
       <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
         <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 Télécharger PDF</button>
         ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">️ Supprimer</button>` : ''}
       </div>
     </div>
   `).join('');
-  
-  console.log('✅ ' + fiches.length + ' fiches affichées');
 }
 
 function showFiche(id) {
   const f = DATABASE.fiches.find(x => x.id === id);
   if (!f) return;
   
-  const marques = f.categorie === 'Moto' ? DATABASE.marquesMoto : DATABASE.marques;
+  const modalContent = document.getElementById('modal-content');
+  if (!modalContent) return;
   
-  document.getElementById('modal-content').innerHTML = `
+  modalContent.innerHTML = `
     <button class="modal-close" onclick="closeModal('modal')">×</button>
     <h2 style="display:flex;align-items:center;gap:10px;">
       <div style="width:50px;height:50px;">${getLogoSVG(f.marque)}</div>
@@ -277,7 +276,7 @@ function showFiche(id) {
     <p><strong>Type :</strong> ${f.type} | <strong>Gravité :</strong> ${f.gravite}</p>
     <p style="margin-top:15px;"><strong>📋 Description :</strong><br>${f.description}</p>
     <p><strong>✅ Solution :</strong> ${f.solution}</p>
-    <p><strong>💰 Coût :</strong> ${f.cout}</p>
+    <p><strong> Coût :</strong> ${f.cout}</p>
     <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 PDF</button>
       ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">🗑️ Supprimer</button>` : ''}
@@ -287,24 +286,30 @@ function showFiche(id) {
 }
 
 function closeModal(id) {
-  document.getElementById(id).classList.remove('active');
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.remove('active');
 }
 
 function openAdmin() {
   if (isAdmin) {
-    document.getElementById('admin-panel').classList.toggle('active');
+    const panel = document.getElementById('admin-panel');
+    if (panel) panel.classList.toggle('active');
   } else {
-    document.getElementById('modal-admin').classList.add('active');
+    const modal = document.getElementById('modal-admin');
+    if (modal) modal.classList.add('active');
   }
 }
 
 function loginAdmin() {
-  const pwd = document.getElementById('admin-password').value;
-  if (pwd === 'Kevin83600') {
+  const pwd = document.getElementById('admin-password');
+  if (!pwd) return;
+  
+  if (pwd.value === 'Kevin83600') {
     isAdmin = true;
     closeModal('modal-admin');
-    document.getElementById('admin-panel').classList.add('active');
-    document.getElementById('admin-password').value = '';
+    const panel = document.getElementById('admin-panel');
+    if (panel) panel.classList.add('active');
+    pwd.value = '';
     showToast('✅ Mode admin activé');
   } else {
     showToast('❌ Mot de passe incorrect');
@@ -357,31 +362,6 @@ function exportData() {
   showToast('💾 Export réussi');
 }
 
-function importData() {
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = 'application/json';
-  input.onchange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      try {
-        const data = JSON.parse(event.target.result);
-        if (Array.isArray(data)) {
-          DATABASE.fiches = data;
-          saveFichesLocally();
-          applyFilters();
-          showToast(' Import réussi');
-        }
-      } catch (err) {
-        showToast('❌ Erreur');
-      }
-    };
-    reader.readAsText(file);
-  };
-  input.click();
-}
-
 function resetData() {
   if (!confirm('⚠️ Réinitialiser toutes les fiches ?')) return;
   localStorage.removeItem('techauto_fiches');
@@ -390,8 +370,10 @@ function resetData() {
 
 function openShare() {
   currentShareUrl = window.location.href.split('?')[0];
-  document.getElementById('share-link-container').textContent = currentShareUrl;
-  document.getElementById('modal-share').classList.add('active');
+  const container = document.getElementById('share-link-container');
+  if (container) container.textContent = currentShareUrl;
+  const modal = document.getElementById('modal-share');
+  if (modal) modal.classList.add('active');
 }
 
 function shareSMS() {
@@ -487,6 +469,7 @@ function exportAllPDF() {
 
 function showToast(msg) {
   const t = document.getElementById('toast');
+  if (!t) return;
   t.textContent = msg;
   t.classList.add('active');
   setTimeout(() => t.classList.remove('active'), 3000);
