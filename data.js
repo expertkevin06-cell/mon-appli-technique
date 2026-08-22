@@ -1,33 +1,33 @@
-// TECHNIQUE AUTO BY KEVIN - Base de données fonctionnelle
+// TECHNIQUE AUTO BY KEVIN - Version minimale fonctionnelle
 const DATABASE = {
   marques: {
-    "Peugeot": { logo: "🇷", couleur: "#1B3A6B" },
+    "Peugeot": { logo: "🇫🇷", couleur: "#1B3A6B" },
     "Renault": { logo: "🇫🇷", couleur: "#FFCC33" },
     "Citroën": { logo: "🇫🇷", couleur: "#CC0000" },
     "Volkswagen": { logo: "🇩🇪", couleur: "#001E50" },
     "BMW": { logo: "🇩🇪", couleur: "#0066B1" },
-    "Mercedes": { logo: "🇩🇪", couleur: "#333333" },
-    "Audi": { logo: "🇪", couleur: "#BB0A30" },
+    "Mercedes": { logo: "🇩", couleur: "#333333" },
+    "Audi": { logo: "🇩🇪", couleur: "#BB0A30" },
     "Ford": { logo: "🇺🇸", couleur: "#003478" },
     "Toyota": { logo: "🇯", couleur: "#EB0A1E" },
-    "Nissan": { logo: "🇯🇵", couleur: "#C3002F" },
+    "Nissan": { logo: "🇵", couleur: "#C3002F" },
     "Hyundai": { logo: "🇰🇷", couleur: "#002C5F" },
-    "Kia": { logo: "🇷", couleur: "#05141F" },
+    "Kia": { logo: "🇰🇷", couleur: "#05141F" },
     "Tesla": { logo: "⚡", couleur: "#CC0000" },
     "Dacia": { logo: "🇷🇴", couleur: "#003DA5" },
-    "Fiat": { logo: "🇮🇹", couleur: "#9D0A0E" },
-    "Opel": { logo: "🇪", couleur: "#FFD700" },
+    "Fiat": { logo: "🇹", couleur: "#9D0A0E" },
+    "Opel": { logo: "🇩🇪", couleur: "#FFD700" },
     "Volvo": { logo: "🇸🇪", couleur: "#003057" },
     "Mazda": { logo: "🇵", couleur: "#B00D1E" },
     "Honda": { logo: "🇯🇵", couleur: "#CC0000" },
-    "Seat": { logo: "🇸", couleur: "#FFD700" },
-    "Skoda": { logo: "🇨🇿", couleur: "#4BA82E" },
-    "Mini": { logo: "🇬", couleur: "#000000" },
+    "Seat": { logo: "🇪🇸", couleur: "#FFD700" },
+    "Skoda": { logo: "🇨", couleur: "#4BA82E" },
+    "Mini": { logo: "🇬🇧", couleur: "#000000" },
     "Alfa Romeo": { logo: "🇮🇹", couleur: "#8B0000" },
-    "Jaguar": { logo: "🇬🇧", couleur: "#000000" },
-    "Alpine": { logo: "🇫🇷", couleur: "#0055A4" },
+    "Jaguar": { logo: "🇬", couleur: "#000000" },
+    "Alpine": { logo: "🇷", couleur: "#0055A4" },
     "BYD": { logo: "🇨🇳", couleur: "#003DA5" },
-    "Jeep": { logo: "🇸", couleur: "#1E5631" }
+    "Jeep": { logo: "🇺🇸", couleur: "#1E5631" }
   },
   marquesMoto: {
     "Yamaha": { logo: "🇯", couleur: "#003DA5" },
@@ -38,7 +38,7 @@ const DATABASE = {
   fiches: []
 };
 
-// Pannes par marque
+// Pannes par marque et type moteur
 const PANNES = {
   "Peugeot": {
     "Essence": [
@@ -134,7 +134,7 @@ const PANNES = {
   }
 };
 
-// Modèles simplifiés
+// Modèles avec motorisations
 const MODELES = {
   "Peugeot": {
     "208": ["1.2 PureTech 100ch Essence", "1.5 BlueHDi 100ch Diesel", "e-208 100kW Électrique"],
@@ -190,7 +190,6 @@ function genererFiches() {
   for (const [marque, modeles] of Object.entries(MODELES)) {
     for (const [modele, motorisations] of Object.entries(modeles)) {
       for (const motorisation of motorisations) {
-        // Détection type moteur
         let typeMoteur = "Essence";
         if (motorisation.toLowerCase().includes('électrique') || motorisation.toLowerCase().includes('electric')) {
           typeMoteur = "Électrique";
@@ -200,12 +199,10 @@ function genererFiches() {
           typeMoteur = "Diesel";
         }
         
-        // Obtenir pannes
         const pannesMarque = PANNES[marque];
         const pannes = pannesMarque ? (pannesMarque[typeMoteur] || pannesMarque["Essence"]) : [];
         
-        // Créer 3-5 fiches par motorisation
-        const nbFiches = Math.min(pannes.length || 3, 5);
+        const nbFiches = Math.max(pannes.length, 3);
         for (let i = 0; i < nbFiches; i++) {
           const panne = pannes[i % pannes.length] || {t:"Révision générale",d:"Entretien périodique",s:"Vidange + filtres",g:"Faible"};
           const anneeDebut = annees[Math.floor(Math.random() * annees.length)];
@@ -237,10 +234,8 @@ function genererFiches() {
   console.log('✅ ' + DATABASE.fiches.length + ' fiches générées');
 }
 
-// Exécution
 genererFiches();
 
-// Fonctions globales
 if (typeof window !== 'undefined') {
   window.DATABASE = DATABASE;
   window.saveFichesLocally = function() {
