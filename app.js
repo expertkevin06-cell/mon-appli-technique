@@ -1,5 +1,6 @@
 // ============================================================
-// TECHNIQUE AUTO BY KEVIN - Application principale v3
+// TECHNIQUE AUTO BY KEVIN - Application principale v5
+// Avec affichage corrigé et recherche avancée
 // ============================================================
 
 let isAdmin = false;
@@ -7,7 +8,7 @@ let currentFilter = { categorie: 'Auto', marque: '', modele: '', moteur: '', sea
 let currentShareUrl = window.location.href;
 
 document.addEventListener('DOMContentLoaded', () => {
-  console.log(' Démarrage application...');
+  console.log('🚀 Démarrage application...');
   
   setTimeout(() => {
     document.getElementById('splash-screen').classList.add('hidden');
@@ -21,13 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   loadFichesFromLocal();
-  
-  // ️ CORRECTION : Vérifier que toutes les fiches ont une catégorie
-  DATABASE.fiches.forEach(f => {
-    if (!f.categorie) {
-      f.categorie = 'Auto';
-    }
-  });
   
   const categorieSelect = document.getElementById('filter-categorie');
   if (categorieSelect) {
@@ -184,13 +178,8 @@ function renderFiches() {
   const stats = document.getElementById('stats');
   if (!container || !stats) return;
   
-  // 🛡️ CORRECTION : Si aucune fiche ne correspond à la catégorie, afficher toutes les fiches
   let fiches = DATABASE.fiches.filter(f => {
-    if (currentFilter.categorie && f.categorie !== currentFilter.categorie) {
-      // Si la catégorie ne match pas, on vérifie si c'est parce que la fiche n'a pas de catégorie
-      if (!f.categorie) return true; // Afficher les fiches sans catégorie
-      return false;
-    }
+    if (currentFilter.categorie && f.categorie !== currentFilter.categorie) return false;
     if (currentFilter.marque && f.marque !== currentFilter.marque) return false;
     if (currentFilter.modele && f.modele !== currentFilter.modele) return false;
     if (currentFilter.moteur && f.motorisation !== currentFilter.moteur) return false;
@@ -204,57 +193,89 @@ function renderFiches() {
   stats.textContent = `${fiches.length} fiche(s) sur ${DATABASE.fiches.length}`;
   
   if (fiches.length === 0) {
-    container.innerHTML = '<p style="text-align:center;padding:40px;color:#888;grid-column:1/-1;">Aucune fiche trouvée.</p>';
+    container.innerHTML = `
+      <div style="text-align:center;padding:40px;color:#888;grid-column:1/-1;">
+        <div style="font-size:3em;margin-bottom:20px;">🔍</div>
+        <p style="font-size:1.2em;">Aucune fiche trouvée</p>
+        <p style="margin-top:10px;">Essayez de modifier vos filtres</p>
+      </div>
+    `;
     return;
   }
   
   const marques = currentFilter.categorie === 'Moto' ? (DATABASE.marquesMoto || {}) : (DATABASE.marques || {});
   
-  container.innerHTML = fiches.map(f => `
-    <div class="fiche" style="border-left-color:${marques[f.marque]?.couleur || '#c0392b'}">
-      <div class="fiche-header">
-        <div class="fiche-marque">
-          <div style="width:40px;height:40px;">${getLogoSVG(f.marque)}</div>
-          <span>${f.marque}</span>
+  let html = '';
+  fiches.forEach(f => {
+    const couleur = marques[f.marque]?.couleur || '#c0392b';
+    const typeClass = f.type === 'Rappel' ? 'rappel' : 'panne';
+    const graviteClass = f.gravite.toLowerCase().replace(' ', '-');
+    
+    html += `
+      <div class="fiche" style="border-left:5px solid ${couleur};background:linear-gradient(135deg, #1a1a1a, #2d2d2d);padding:20px;margin:15px 0;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.3);">
+        <div class="fiche-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;">
+          <div class="fiche-marque" style="display:flex;align-items:center;gap:10px;">
+            <div style="width:40px;height:40px;background:${couleur};border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;">${f.marque.substring(0,2).toUpperCase()}</div>
+            <span style="font-size:1.2em;font-weight:bold;color:#fff;">${f.marque}</span>
+          </div>
+          <div class="fiche-type type-${typeClass}" style="background:${f.type === 'Rappel' ? '#e74c3c' : '#f39c12'};color:#fff;padding:5px 15px;border-radius:20px;font-weight:bold;">${f.type}</div>
         </div>
-        <div class="fiche-type type-${f.type === 'Rappel' ? 'rappel' : 'panne'}">${f.type}</div>
+        
+        <div class="fiche-modele" style="font-size:1.3em;font-weight:bold;margin:10px 0;color:#3498db;">
+          🚗 ${f.modele} (${f.annees})
+        </div>
+        
+        <div class="fiche-moteur" style="margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px;">
+          <strong style="color:#2ecc71;">⚙️ Motorisation :</strong><br>
+          <span style="color:#ecf0f1;">${f.motorisation}</span><br>
+          <span style="color:#95a5a6;font-size:0.9em;">(${f.type_moteur})</span>
+        </div>
+        
+        <div style="margin:10px 0;">
+          <strong style="color:#9b59b6;">📋 Campagne :</strong> <span style="color:#ecf0f1;">${f.campagne}</span>
+        </div>
+        
+        <div class="fiche-titre" style="margin:15px 0;padding:15px;background:rgba(231,76,60,0.2);border-left:4px solid #e74c3c;border-radius:8px;">
+          <strong style="color:#e74c3c;font-size:1.1em;">⚠️ ${f.titre}</strong>
+        </div>
+        
+        <div style="margin:10px 0;">
+          <strong style="color:#3498db;">📝 Description :</strong><br>
+          <span style="color:#bdc3c7;font-size:0.95em;line-height:1.6;">${f.description}</span>
+        </div>
+        
+        <div style="margin:10px 0;">
+          <strong style="color:#2ecc71;">✅ Solution :</strong><br>
+          <span style="color:#27ae60;font-size:0.95em;">${f.solution}</span>
+        </div>
+        
+        <div style="margin:10px 0;">
+          <strong style="color:#f39c12;">💰 Coût :</strong> <span style="color:#f1c40f;">${f.cout}</span>
+        </div>
+        
+        <div style="margin:10px 0;display:flex;gap:20px;flex-wrap:wrap;">
+          <div>
+            <strong style="color:#95a5a6;">📅 Date :</strong> <span style="color:#ecf0f1;">${f.date}</span>
+          </div>
+          <div>
+            <strong style="color:#95a5a6;">👥 Véhicules :</strong> <span style="color:#ecf0f1;">${f.nb_vehicules?.toLocaleString('fr-FR') || 'N/A'}</span>
+          </div>
+        </div>
+        
+        <div class="fiche-gravite gravite-${graviteClass}" style="margin:15px 0;padding:10px;background:rgba(231,76,60,0.1);border-radius:8px;text-align:center;">
+          <span style="font-size:1.2em;">⚠️</span> <strong style="color:#e74c3c;">Gravité : ${f.gravite}</strong>
+        </div>
+        
+        <div style="display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;">
+          <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})" style="background:#3498db;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:bold;">📄 Télécharger PDF</button>
+          ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})" style="background:#e74c3c;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;font-weight:bold;">🗑️ Supprimer</button>` : ''}
+        </div>
       </div>
-      <div class="fiche-modele" style="font-size:1.1em;font-weight:bold;margin:8px 0;">
-        ${f.modele} (${f.annees})
-      </div>
-      <div class="fiche-moteur" style="margin:5px 0;">
-        <strong>⚙️ Motorisation :</strong> ${f.motorisation} (${f.type_moteur})
-      </div>
-      <div style="margin:5px 0;">
-        <strong>📋 Campagne :</strong> ${f.campagne}
-      </div>
-      <div class="fiche-titre" style="margin:10px 0;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px;">
-        <strong>️ ${f.titre}</strong>
-      </div>
-      <div style="margin:8px 0;">
-        <strong>📝 Description :</strong><br>
-        <span style="color:#ccc;font-size:0.9em;">${f.description}</span>
-      </div>
-      <div style="margin:8px 0;">
-        <strong>✅ Solution :</strong><br>
-        <span style="color:#27ae60;font-size:0.9em;">${f.solution}</span>
-      </div>
-      <div style="margin:8px 0;">
-        <strong>💰 Coût :</strong> <span style="color:#f39c12;">${f.cout}</span>
-      </div>
-      <div style="margin:8px 0;">
-        <strong>📅 Date :</strong> ${f.date} | 
-        <strong> Véhicules :</strong> ${f.nb_vehicules?.toLocaleString('fr-FR') || 'N/A'}
-      </div>
-      <div class="fiche-gravite gravite-${f.gravite.toLowerCase().replace(' ', '-')}" style="margin:10px 0;">
-        ⚠️ Gravité : ${f.gravite}
-      </div>
-      <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 Télécharger PDF</button>
-        ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">️ Supprimer</button>` : ''}
-      </div>
-    </div>
-  `).join('');
+    `;
+  });
+  
+  container.innerHTML = html;
+  console.log('✅ ' + fiches.length + ' fiches affichées');
 }
 
 function showFiche(id) {
@@ -265,21 +286,21 @@ function showFiche(id) {
   if (!modalContent) return;
   
   modalContent.innerHTML = `
-    <button class="modal-close" onclick="closeModal('modal')">×</button>
-    <h2 style="display:flex;align-items:center;gap:10px;">
-      <div style="width:50px;height:50px;">${getLogoSVG(f.marque)}</div>
+    <button class="modal-close" onclick="closeModal('modal')" style="position:absolute;top:20px;right:20px;font-size:2em;background:none;border:none;color:#fff;cursor:pointer;">×</button>
+    <h2 style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="width:50px;height:50px;background:#3498db;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;">${f.marque.substring(0,2).toUpperCase()}</div>
       <span>${f.marque} ${f.modele}</span>
     </h2>
     <p><strong>Motorisation :</strong> ${f.motorisation} (${f.type_moteur})</p>
     <p><strong>Années :</strong> ${f.annees}</p>
     <p><strong>Campagne :</strong> ${f.campagne}</p>
     <p><strong>Type :</strong> ${f.type} | <strong>Gravité :</strong> ${f.gravite}</p>
-    <p style="margin-top:15px;"><strong>📋 Description :</strong><br>${f.description}</p>
+    <p style="margin-top:15px;"><strong> Description :</strong><br>${f.description}</p>
     <p><strong>✅ Solution :</strong> ${f.solution}</p>
-    <p><strong> Coût :</strong> ${f.cout}</p>
+    <p><strong>💰 Coût :</strong> ${f.cout}</p>
     <div style="display:flex;gap:10px;margin-top:15px;flex-wrap:wrap;">
-      <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})">📄 PDF</button>
-      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})">🗑️ Supprimer</button>` : ''}
+      <button class="btn btn-primary" onclick="downloadFichePDF(${f.id})" style="background:#3498db;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;">📄 PDF</button>
+      ${isAdmin ? `<button class="btn btn-danger" onclick="deleteFiche(${f.id})" style="background:#e74c3c;color:#fff;border:none;padding:12px 20px;border-radius:8px;cursor:pointer;">🗑️ Supprimer</button>` : ''}
     </div>
   `;
   document.getElementById('modal').classList.add('active');
@@ -386,7 +407,7 @@ function shareMail() {
 
 function copyLink() {
   navigator.clipboard.writeText(currentShareUrl).then(() => {
-    showToast('📋 Copié');
+    showToast(' Copié');
   });
 }
 
@@ -469,7 +490,10 @@ function exportAllPDF() {
 
 function showToast(msg) {
   const t = document.getElementById('toast');
-  if (!t) return;
+  if (!t) {
+    alert(msg);
+    return;
+  }
   t.textContent = msg;
   t.classList.add('active');
   setTimeout(() => t.classList.remove('active'), 3000);
