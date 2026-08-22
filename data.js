@@ -1,16 +1,16 @@
-// TECHNIQUE AUTO BY KEVIN - Base massive 2500+ fiches
+// TECHNIQUE AUTO BY KEVIN - Base massive Voitures + Motos/Scooters
 const DATABASE = {
   marques: {
-    "Peugeot": { logo: "🇷", couleur: "#1B3A6B" },
+    "Peugeot": { logo: "🇫🇷", couleur: "#1B3A6B" },
     "Renault": { logo: "🇫🇷", couleur: "#FFCC33" },
-    "Citroën": { logo: "🇫", couleur: "#CC0000" },
-    "DS": { logo: "🇷", couleur: "#1a1a1a" },
+    "Citroën": { logo: "🇫🇷", couleur: "#CC0000" },
+    "DS": { logo: "🇫🇷", couleur: "#1a1a1a" },
     "Alpine": { logo: "🇫🇷", couleur: "#0055A4" },
-    "Dacia": { logo: "🇷", couleur: "#003DA5" },
-    "Volkswagen": { logo: "🇪", couleur: "#001E50" },
+    "Dacia": { logo: "🇴", couleur: "#003DA5" },
+    "Volkswagen": { logo: "🇩🇪", couleur: "#001E50" },
     "BMW": { logo: "🇩🇪", couleur: "#0066B1" },
-    "Mercedes": { logo: "🇩🇪", couleur: "#333333" },
-    "Audi": { logo: "🇪", couleur: "#BB0A30" },
+    "Mercedes": { logo: "🇩", couleur: "#333333" },
+    "Audi": { logo: "🇩🇪", couleur: "#BB0A30" },
     "Opel": { logo: "🇩🇪", couleur: "#FFD700" },
     "Volvo": { logo: "🇸🇪", couleur: "#003057" },
     "Fiat": { logo: "🇹", couleur: "#9D0A0E" },
@@ -19,39 +19,58 @@ const DATABASE = {
     "Skoda": { logo: "🇿", couleur: "#4BA82E" },
     "Mini": { logo: "🇬🇧", couleur: "#000000" },
     "Jaguar": { logo: "🇬🇧", couleur: "#000000" },
-    "Land Rover": { logo: "🇬🇧", couleur: "#005A2B" },
+    "Land Rover": { logo: "🇧", couleur: "#005A2B" },
     "Porsche": { logo: "🇩🇪", couleur: "#B12B28" },
-    "Toyota": { logo: "🇵", couleur: "#EB0A1E" },
+    "Toyota": { logo: "🇯", couleur: "#EB0A1E" },
     "Lexus": { logo: "🇯🇵", couleur: "#1F2937" },
-    "Nissan": { logo: "🇯", couleur: "#C3002F" },
-    "Honda": { logo: "🇵", couleur: "#CC0000" },
+    "Nissan": { logo: "🇯🇵", couleur: "#C3002F" },
+    "Honda": { logo: "🇯", couleur: "#CC0000" },
     "Mazda": { logo: "🇯🇵", couleur: "#B00D1E" },
-    "Subaru": { logo: "🇯", couleur: "#003DA5" },
-    "Mitsubishi": { logo: "🇵", couleur: "#E60012" },
+    "Subaru": { logo: "🇯🇵", couleur: "#003DA5" },
+    "Mitsubishi": { logo: "🇯🇵", couleur: "#E60012" },
     "Suzuki": { logo: "🇯🇵", couleur: "#003DA5" },
-    "Hyundai": { logo: "🇷", couleur: "#002C5F" },
-    "Kia": { logo: "🇰🇷", couleur: "#05141F" },
+    "Hyundai": { logo: "🇰🇷", couleur: "#002C5F" },
+    "Kia": { logo: "🇷", couleur: "#05141F" },
     "Ford": { logo: "🇺🇸", couleur: "#003478" },
     "Chevrolet": { logo: "🇺🇸", couleur: "#D4AF37" },
-    "Tesla": { logo: "", couleur: "#CC0000" },
-    "Jeep": { logo: "🇸", couleur: "#1E5631" },
-    "Cadillac": { logo: "🇺🇸", couleur: "#8B0000" },
+    "Tesla": { logo: "⚡", couleur: "#CC0000" },
+    "Jeep": { logo: "🇺", couleur: "#1E5631" },
+    "Cadillac": { logo: "🇸", couleur: "#8B0000" },
     "Dodge": { logo: "🇺🇸", couleur: "#000000" },
-    "BYD": { logo: "🇨🇳", couleur: "#003DA5" }
+    "BYD": { logo: "🇨", couleur: "#003DA5" }
   },
   marquesMoto: {
     "Yamaha": { logo: "🇯🇵", couleur: "#003DA5" },
-    "Kawasaki": { logo: "🇯", couleur: "#00A651" },
-    "BMW Moto": { logo: "🇩🇪", couleur: "#0066B1" },
-    "Honda Moto": { logo: "🇯🇵", couleur: "#CC0000" },
-    "Ducati": { logo: "🇹", couleur: "#CC0000" },
-    "KTM": { logo: "🇦🇹", couleur: "#FF6B00" }
+    "Honda": { logo: "🇵", couleur: "#CC0000" },
+    "Kawasaki": { logo: "🇯🇵", couleur: "#00A651" },
+    "Suzuki": { logo: "🇯", couleur: "#003DA5" },
+    "BMW": { logo: "🇩🇪", couleur: "#0066B1" },
+    "Ducati": { logo: "🇮🇹", couleur: "#CC0000" },
+    "KTM": { logo: "🇦🇹", couleur: "#FF6B00" },
+    "Harley-Davidson": { logo: "🇺🇸", couleur: "#FF6B00" },
+    "Triumph": { logo: "🇬🇧", couleur: "#000000" },
+    "Piaggio": { logo: "🇮", couleur: "#003DA5" },
+    "Vespa": { logo: "🇮🇹", couleur: "#00A651" },
+    "Peugeot": { logo: "🇫🇷", couleur: "#1B3A6B" },
+    "Aprilia": { logo: "🇮", couleur: "#000000" },
+    "MV Agusta": { logo: "🇮🇹", couleur: "#CC0000" },
+    "Royal Enfield": { logo: "🇳", couleur: "#8B0000" },
+    "Indian": { logo: "🇺🇸", couleur: "#000000" },
+    "Husqvarna": { logo: "🇸🇪", couleur: "#FFD700" },
+    "Beta": { logo: "🇮", couleur: "#003DA5" },
+    "GasGas": { logo: "🇸", couleur: "#CC0000" },
+    "Sherco": { logo: "🇫🇷", couleur: "#003DA5" },
+    "TM Racing": { logo: "🇮🇹", couleur: "#CC0000" },
+    "Benelli": { logo: "🇮🇹", couleur: "#CC0000" },
+    "CF Moto": { logo: "🇨", couleur: "#003DA5" },
+    "Kymco": { logo: "🇹🇼", couleur: "#CC0000" },
+    "SYM": { logo: "🇼", couleur: "#003DA5" }
   },
   fiches: []
 };
 
-// Pannes par marque et type moteur
-const PANNES = {
+// Pannes voitures par marque et type moteur
+const PANNES_VOITURE = {
   "Peugeot": {
     "Essence": [
       {t:"Courroie distribution 1.2 PureTech",d:"Désagrégation dans l'huile. Rappel 500k véhicules",s:"Remplacement courroie + pompe à huile",g:"Très grave"},
@@ -83,417 +102,426 @@ const PANNES = {
     "Essence": [
       {t:"Turbo 1.3 TCe fragile",d:"Perte puissance, sifflement",s:"Remplacement turbo + lignes",g:"Grave"},
       {t:"Chaîne distribution 1.3 TCe",d:"Allongement avant 100k km",s:"Remplacement kit chaîne",g:"Très grave"},
-      {t:"Consommation huile 1.3 TCe",d:"Moteur H5H consomme 1L/1000km",s:"Vérification segmentation",g:"Grave"},
-      {t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}
+      {t:"Consommation huile 1.3 TCe",d:"Moteur H5H consomme 1L/1000km",s:"Vérification segmentation",g:"Grave"}
     ],
     "Diesel": [
       {t:"Boîte EDC défaillante",d:"À-coups, voyant boîte",s:"Remplacement mécatronique",g:"Grave"},
       {t:"Injecteurs 1.5 dCi grippés",d:"Démarrage difficile",s:"Remplacement injecteurs",g:"Grave"},
       {t:"Courroie distribution 1.5 dCi",d:"Risque rupture avant 120k km",s:"Remplacement préventif kit",g:"Très grave"},
-      {t:"Turbo 1.5 dCi",d:"Perte puissance, sifflement",s:"Remplacement turbo",g:"Grave"},
-      {t:"Pompe à eau 1.5 dCi",d:"Fuite liquide refroidissement",s:"Remplacement pompe + courroie",g:"Moyenne"},
-      {t:"FAP 1.5 dCi colmaté",d:"Témoin FAP allumé",s:"Régénération ou remplacement",g:"Moyenne"}
+      {t:"Turbo 1.5 dCi",d:"Perte puissance, sifflement",s:"Remplacement turbo",g:"Grave"}
     ],
-    "Hybride": [
-      {t:"Système E-Tech",d:"Perte autonomie électrique",s:"Diagnostic système",g:"Grave"},
-      {t:"Boîte à crabots E-Tech",d:"À-coups, bruits anormaux",s:"Mise à jour ou remplacement",g:"Grave"}
-    ],
-    "Électrique": [
-      {t:"Batterie Zoe/Megane",d:"Perte autonomie importante",s:"Remplacement modules",g:"Grave"},
-      {t:"Chargeur embarqué",d:"Impossible charger en AC",s:"Remplacement chargeur",g:"Grave"}
-    ]
-  },
-  "Citroën": {
-    "Essence": [
-      {t:"Courroie distribution 1.2 PureTech",d:"Désagrégation dans l'huile",s:"Remplacement courroie + pompe",g:"Très grave"},
-      {t:"Consommation huile 1.2 PureTech",d:"Jusqu'à 1L/1000km",s:"Remplacement segments",g:"Grave"},
-      {t:"Turbo 1.2 PureTech",d:"Perte puissance, sifflement",s:"Remplacement turbo",g:"Grave"}
-    ],
-    "Diesel": [
-      {t:"Turbo 1.5/2.0 BlueHDi",d:"Perte puissance, fumée bleue",s:"Remplacement turbo",g:"Grave"},
-      {t:"FAP BlueHDi colmaté",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"AdBlue défaillant",d:"Démarrage impossible",s:"Remplacement réservoir",g:"Grave"}
-    ],
-    "Hybride": [{t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}],
-    "Électrique": [{t:"Batterie haute tension",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "DS": {
-    "Essence": [
-      {t:"Turbo 1.6 THP",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Chaîne distribution",d:"Allongement chaîne",s:"Remplacement kit",g:"Très grave"}
-    ],
-    "Diesel": [
-      {t:"Boîte EAT8",d:"À-coups, voyant",s:"Mise à jour ou remplacement",g:"Grave"},
-      {t:"AdBlue",d:"Démarrage impossible",s:"Remplacement réservoir",g:"Grave"}
-    ],
-    "Hybride": [{t:"Système hybride",d:"Perte autonomie",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Alpine": {
-    "Essence": [
-      {t:"Turbo 1.8 TCe",d:"Perte puissance A110",s:"Remplacement turbo",g:"Grave"},
-      {t:"Boîte Getrag",d:"À-coups boîte",s:"Mise à jour calculateur",g:"Moyenne"}
-    ],
-    "Diesel": [],
-    "Hybride": [],
-    "Électrique": [{t:"Batterie A290/A390",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Dacia": {
-    "Essence": [
-      {t:"Turbo 1.3 TCe",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Courroie distribution",d:"Risque rupture avant 120k km",s:"Remplacement préventif",g:"Très grave"}
-    ],
-    "Diesel": [
-      {t:"Injecteurs 1.5 dCi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.5 dCi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"FAP Dacia",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système hybride Jogger",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Spring",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
+    "Hybride": [{t:"Système E-Tech",d:"Perte autonomie électrique",s:"Diagnostic système",g:"Grave"}],
+    "Électrique": [{t:"Batterie Zoe/Megane",d:"Perte autonomie importante",s:"Remplacement modules",g:"Grave"}]
   },
   "Volkswagen": {
     "Essence": [
       {t:"Consommation huile TSI",d:"1L/1000km moteurs EA888",s:"Remplacement segments",g:"Grave"},
       {t:"Chaîne distribution 1.4 TSI",d:"Allongement avant 100k km",s:"Remplacement kit chaîne",g:"Très grave"},
-      {t:"Bobines d'allumage TSI",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"},
-      {t:"Turbo 1.4/2.0 TSI",d:"Perte puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
-      {t:"Pompe à eau TSI",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
-      {t:"Vanne EGR TSI",d:"Encrassement, perte puissance",s:"Nettoyage vanne EGR",g:"Moyenne"}
+      {t:"Turbo 1.4/2.0 TSI",d:"Perte puissance, jeu axial",s:"Remplacement turbo",g:"Grave"}
     ],
     "Diesel": [
       {t:"Dieselgate",d:"Logiciel truqueur NOx",s:"Mise à jour logiciel",g:"Grave"},
       {t:"Boîte DSG7 mécatronique",d:"À-coups, calages",s:"Remplacement mécatronique",g:"Grave"},
       {t:"Injecteurs 2.0 TDI",d:"Fuites injecteurs",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP 2.0 TDI colmaté",d:"Voyant FAP, perte puissance",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"Volant moteur bi-masse",d:"Vibrations, claquements",s:"Remplacement volant + embrayage",g:"Grave"},
-      {t:"Vanne EGR 2.0 TDI",d:"Encrassement, ralenti instable",s:"Nettoyage vanne EGR",g:"Moyenne"}
+      {t:"FAP 2.0 TDI colmaté",d:"Voyant FAP, perte puissance",s:"Régénération ou remplacement",g:"Moyenne"}
     ],
-    "Hybride": [{t:"Système eHybrid",d:"Perte autonomie",s:"Diagnostic batterie",g:"Grave"}],
-    "Électrique": [
-      {t:"Batterie ID.3/ID.4",d:"Perte autonomie, limitation charge",s:"Diagnostic BMS",g:"Grave"},
-      {t:"Logiciel ID.3/ID.4",d:"Bugs logiciels, écran noir",s:"Mise à jour logiciel",g:"Moyenne"}
-    ]
+    "Électrique": [{t:"Batterie ID.3/ID.4",d:"Perte autonomie, limitation charge",s:"Diagnostic BMS",g:"Grave"}]
   },
   "BMW": {
     "Essence": [
       {t:"Chaîne distribution N47/N57",d:"Rupture chaîne côté boîte",s:"Remplacement kit chaîne",g:"Très grave"},
-      {t:"Moteur N20 tendeur",d:"Rupture tendeur chaîne",s:"Remplacement tendeur + chaîne",g:"Très grave"},
       {t:"Système Valvetronic",d:"Ralenti instable, perte puissance",s:"Remplacement moteur Valvetronic",g:"Grave"},
-      {t:"Pompe haute pression",d:"Démarrage difficile",s:"Remplacement pompe HP",g:"Moyenne"},
-      {t:"Turbo N47/N57",d:"Perte puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
-      {t:"Injecteurs piezo",d:"Fuites injecteurs",s:"Remplacement injecteurs + codage",g:"Grave"}
+      {t:"Turbo N47/N57",d:"Perte puissance, jeu axial",s:"Remplacement turbo",g:"Grave"}
     ],
     "Diesel": [
       {t:"Chaîne N47",d:"Rupture distribution",s:"Remplacement kit chaîne",g:"Très grave"},
-      {t:"Injecteurs piezo 2.0/3.0 d",d:"Fuites injecteurs",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo N47/N57",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"FAP BMW",d:"Colmatage FAP",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"Vanne EGR",d:"Encrassement",s:"Nettoyage vanne EGR",g:"Moyenne"},
-      {t:"Volant moteur bi-masse",d:"Vibrations, claquements",s:"Remplacement volant + embrayage",g:"Grave"}
+      {t:"Injecteurs piezo 2.0/3.0 d",d:"Fuites injecteurs",s:"Remplacement injecteurs + codage",g:"Grave"},
+      {t:"FAP BMW",d:"Colmatage FAP",s:"Régénération ou remplacement",g:"Moyenne"}
     ],
-    "Hybride": [{t:"Batterie hybride plug-in",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"}],
     "Électrique": [{t:"Batterie iX/i4",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Mercedes": {
     "Essence": [
       {t:"Boîte 7G-Tronic",d:"À-coups, calages",s:"Remplacement boîte",g:"Grave"},
       {t:"Turbo M274",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Chaîne distribution M274",d:"Allongement chaîne",s:"Remplacement kit chaîne",g:"Très grave"},
-      {t:"Pompe à eau",d:"Fuite liquide refroidissement",s:"Remplacement pompe",g:"Moyenne"}
+      {t:"Chaîne distribution M274",d:"Allongement chaîne",s:"Remplacement kit chaîne",g:"Très grave"}
     ],
     "Diesel": [
       {t:"Injecteurs OM651",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
       {t:"Turbo OM651/OM642",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Courroie accessoires OM642",d:"Risque rupture courroie",s:"Remplacement courroie",g:"Grave"},
-      {t:"Vanne EGR OM651",d:"Encrassement",s:"Nettoyage vanne EGR",g:"Moyenne"},
-      {t:"FAP Mercedes",d:"Colmatage FAP",s:"Régénération ou remplacement",g:"Moyenne"},
       {t:"Suspension Airmatic",d:"Véhicule s'affaisse",s:"Remplacement amortisseurs",g:"Grave"}
     ],
-    "Hybride": [{t:"Système EQ Boost",d:"Défaut système 48V",s:"Remplacement modules",g:"Grave"}],
     "Électrique": [{t:"Batterie EQS/EQE",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Audi": {
     "Essence": [
       {t:"Consommation huile 1.8/2.0 TFSI",d:"1L/1000km moteurs EA888",s:"Remplacement segments",g:"Grave"},
-      {t:"Chaîne distribution 3.0 TFSI",d:"Allongement avant 150k km",s:"Remplacement kit chaîne",g:"Très grave"},
       {t:"Boîte S-Tronic 7",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"},
       {t:"Turbo 2.0 TFSI",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
     ],
     "Diesel": [
       {t:"Injecteurs 3.0 TDI",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
       {t:"FAP Audi",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"Vanne EGR 3.0 TDI",d:"Encrassement",s:"Nettoyage vanne EGR",g:"Moyenne"},
-      {t:"Volant moteur bi-masse",d:"Vibrations",s:"Remplacement volant + embrayage",g:"Grave"},
       {t:"Quattro différentiel",d:"Bruits transmission",s:"Remplacement différentiel",g:"Grave"}
     ],
-    "Hybride": [{t:"Système TFSIe",d:"Perte autonomie",s:"Diagnostic",g:"Grave"}],
     "Électrique": [{t:"Batterie e-tron",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Opel": {
-    "Essence": [{t:"Courroie distribution humide 1.2",d:"Désagrégation courroie",s:"Remplacement courroie + pompe",g:"Très grave"}],
-    "Diesel": [
-      {t:"Injecteurs 1.5 Diesel",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.5 Diesel",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
-    ],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Corsa-e",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Volvo": {
-    "Essence": [{t:"Turbo Drive-E",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs D4/D5",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Volvo",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système Recharge T8",d:"Perte autonomie",s:"Diagnostic batterie",g:"Grave"}],
-    "Électrique": [{t:"Batterie EX30/EX90",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Fiat": {
-    "Essence": [{t:"Turbo 1.0 Hybrid",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs 1.3/1.6 Multijet",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Fiat",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie 500e",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Alfa Romeo": {
-    "Essence": [
-      {t:"Turbo 2.0 TBi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Boîte Alfa TCT",d:"À-coups boîte",s:"Mise à jour calculateur",g:"Moyenne"}
-    ],
-    "Diesel": [
-      {t:"Injecteurs 2.2 JTDm",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Alfa",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système hybride Tonale",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
-  },
-  "Seat": {
-    "Essence": [
-      {t:"Consommation huile TSI",d:"Moteurs EA211/EA888",s:"Remplacement segments",g:"Grave"},
-      {t:"Turbo TSI",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
-    ],
-    "Diesel": [
-      {t:"Injecteurs TDI",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Seat",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système e-Hybrid",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
-  },
-  "Skoda": {
-    "Essence": [{t:"Consommation huile TSI",d:"Moteurs EA211/EA888",s:"Remplacement segments",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs TDI",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Skoda",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système iV",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Enyaq",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Mini": {
-    "Essence": [
-      {t:"Consommation huile",d:"Moteurs BMW B38/B48",s:"Remplacement segments",g:"Grave"},
-      {t:"Chaîne distribution",d:"Allongement chaîne",s:"Remplacement kit chaîne",g:"Très grave"}
-    ],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Mini SE",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Jaguar": {
-    "Essence": [{t:"Turbo Ingenium",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs Ingenium",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Jaguar",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système PHEV",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie I-Pace",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Land Rover": {
-    "Essence": [{t:"Turbo Ingenium",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs Ingenium",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Suspension pneumatique",d:"Véhicule s'affaisse",s:"Remplacement soufflets",g:"Grave"}
-    ],
-    "Hybride": [{t:"Système PHEV",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
-  },
-  "Porsche": {
-    "Essence": [
-      {t:"Boîte PDK",d:"À-coups, mécatronique",s:"Remplacement mécatronique",g:"Grave"},
-      {t:"Turbo",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
-    ],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Taycan",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Toyota": {
     "Essence": [
       {t:"Consommation huile 2.0 D-4D",d:"Jusqu'à 1L/1000km",s:"Remplacement segments",g:"Grave"},
-      {t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"},
       {t:"Turbo 1.2 Turbo",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
     ],
     "Diesel": [
       {t:"Injecteurs 2.0/2.2 D-4D",d:"Fuites injecteurs",s:"Remplacement injecteurs",g:"Grave"},
       {t:"Joint de culasse 2.2 D-CAT",d:"Fuite liquide, surchauffe",s:"Remplacement joint culasse",g:"Très grave"},
-      {t:"FAP Toyota",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"Turbo 2.0/2.2 D-4D",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
+      {t:"FAP Toyota",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
     ],
     "Hybride": [
       {t:"Batterie hybride",d:"Perte autonomie, voyant batterie",s:"Remplacement modules",g:"Grave"},
-      {t:"Onduleur hybride",d:"Véhicule ne démarre plus",s:"Remplacement onduleur",g:"Très grave"},
-      {t:"Embrayage hybride",d:"À-coups, bruits",s:"Remplacement embrayage",g:"Moyenne"}
+      {t:"Onduleur hybride",d:"Véhicule ne démarre plus",s:"Remplacement onduleur",g:"Très grave"}
     ],
     "Électrique": [{t:"Batterie bZ4X",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
-  "Lexus": {
-    "Essence": [{t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [
-      {t:"Batterie hybride",d:"Perte autonomie",s:"Remplacement modules",g:"Grave"},
-      {t:"Onduleur",d:"Défaut système",s:"Remplacement onduleur",g:"Grave"}
-    ],
-    "Électrique": [{t:"Batterie",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Nissan": {
+  "Ford": {
     "Essence": [
-      {t:"Turbo 1.3 DIG-T",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}
+      {t:"Courroie 1.0 EcoBoost",d:"Courroie dans l'huile, risque casse",s:"Remplacement courroie + pompe",g:"Très grave"},
+      {t:"Turbo 1.5/2.0 EcoBoost",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}
     ],
     "Diesel": [
-      {t:"Boîte Xtronic CVT",d:"À-coups, bruits, perte traction",s:"Remplacement boîte CVT",g:"Grave"},
-      {t:"Moteur 1.5 dCi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.6 dCi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"FAP Nissan",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
+      {t:"Boîte Powershift 6DCT250",d:"À-coups, calages, embrayage usé",s:"Remplacement embrayages",g:"Grave"},
+      {t:"Injecteurs 2.0 TDCi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
+      {t:"FAP Ford",d:"Colmatage FAP",s:"Régénération ou remplacement",g:"Moyenne"}
     ],
-    "Hybride": [{t:"Système e-POWER",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Leaf",d:"Perte autonomie importante",s:"Remplacement modules",g:"Grave"}]
-  },
-  "Honda": {
-    "Essence": [{t:"Turbo VTEC Turbo",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [{t:"Injecteurs i-DTEC",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système e:HEV",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Honda e",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Mazda": {
-    "Essence": [{t:"Turbo Skyactiv-G",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [
-      {t:"Injecteurs Skyactiv-D",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Mazda",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie MX-30",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Subaru": {
-    "Essence": [{t:"Joint de culasse",d:"Fuite liquide, surchauffe",s:"Remplacement joint",g:"Très grave"}],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système hybride",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
-  },
-  "Mitsubishi": {
-    "Essence": [{t:"Turbo",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système PHEV Outlander",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
-  },
-  "Suzuki": {
-    "Essence": [{t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}],
-    "Diesel": [{t:"Injecteurs DDiS",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [{t:"Système hybride léger",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": []
+    "Électrique": [{t:"Batterie Mustang Mach-E",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Hyundai": {
-    "Essence": [
-      {t:"Turbo 1.6 T-GDi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}
-    ],
+    "Essence": [{t:"Turbo 1.6 T-GDi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
     "Diesel": [
       {t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.6/1.7 CRDi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Boîte DCT 7 vitesses",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"},
-      {t:"FAP Hyundai",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
+      {t:"Boîte DCT 7 vitesses",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"}
     ],
-    "Hybride": [{t:"Système hybride",d:"Perte autonomie",s:"Diagnostic batterie",g:"Grave"}],
     "Électrique": [{t:"Batterie Ioniq 5/6",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
   "Kia": {
     "Essence": [{t:"Turbo 1.6 T-GDi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"}],
     "Diesel": [
       {t:"Injecteurs 1.6 CRDi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.6/1.7 CRDi",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
       {t:"Boîte DCT 7 vitesses",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"}
     ],
-    "Hybride": [{t:"Système hybride",d:"Perte autonomie",s:"Diagnostic batterie",g:"Grave"}],
     "Électrique": [{t:"Batterie EV6/EV9",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   },
-  "Ford": {
-    "Essence": [
-      {t:"Courroie 1.0 EcoBoost",d:"Courroie dans l'huile, risque casse",s:"Remplacement courroie + pompe",g:"Très grave"},
-      {t:"Turbo 1.5/2.0 EcoBoost",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"},
-      {t:"Pompe à eau 1.0 EcoBoost",d:"Fuite liquide refroidissement",s:"Remplacement pompe",g:"Moyenne"},
-      {t:"Vanne EGR",d:"Encrassement",s:"Nettoyage vanne EGR",g:"Moyenne"}
-    ],
-    "Diesel": [
-      {t:"Boîte Powershift 6DCT250",d:"À-coups, calages, embrayage usé",s:"Remplacement embrayages",g:"Grave"},
-      {t:"Injecteurs 2.0 TDCi",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"Turbo 1.5/2.0 EcoBlue",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"FAP Ford",d:"Colmatage FAP",s:"Régénération ou remplacement",g:"Moyenne"},
-      {t:"Embrayage usure",d:"Patina avant 80k km",s:"Remplacement kit embrayage",g:"Grave"}
-    ],
-    "Hybride": [{t:"Système hybride",d:"Perte autonomie",s:"Diagnostic batterie",g:"Grave"}],
-    "Électrique": [{t:"Batterie Mustang Mach-E",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Chevrolet": {
-    "Essence": [{t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}],
-    "Diesel": [{t:"Injecteurs",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"}],
-    "Hybride": [],
-    "Électrique": [{t:"Batterie Bolt EV",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
   "Tesla": {
-    "Essence": [],
-    "Diesel": [],
-    "Hybride": [],
     "Électrique": [
       {t:"Batterie haute tension",d:"Perte autonomie, limitation charge",s:"Diagnostic BMS, remplacement modules",g:"Grave"},
       {t:"Écran tactile MCU",d:"Écran noir, lag, reboot",s:"Remplacement MCU",g:"Moyenne"},
-      {t:"Portes poignées",d:"Poignées ne sortent plus",s:"Remplacement mécanisme",g:"Faible"},
       {t:"Suspension pneumatique",d:"Véhicule s'affaisse",s:"Remplacement soufflets",g:"Grave"},
       {t:"Chargeur embarqué",d:"Impossible charger en AC",s:"Remplacement chargeur",g:"Grave"}
     ]
-  },
-  "Jeep": {
-    "Essence": [
-      {t:"Turbo 1.3 Turbo",d:"Perte puissance",s:"Remplacement turbo",g:"Grave"},
-      {t:"Boîte automatique",d:"À-coups boîte",s:"Mise à jour calculateur",g:"Moyenne"}
-    ],
-    "Diesel": [
-      {t:"Injecteurs Multijet",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
-      {t:"FAP Jeep",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"}
-    ],
-    "Hybride": [{t:"Système 4xe",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Avenger",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Cadillac": {
-    "Essence": [{t:"Bobines d'allumage",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}],
-    "Diesel": [],
-    "Hybride": [],
-    "Électrique": [{t:"Batterie Lyriq",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
-  },
-  "Dodge": {
-    "Essence": [{t:"Bobines d'allumage HEMI",d:"Ratés d'allumage",s:"Remplacement bobines",g:"Faible"}],
-    "Diesel": [],
-    "Hybride": [],
-    "Électrique": []
-  },
-  "BYD": {
-    "Essence": [],
-    "Diesel": [],
-    "Hybride": [{t:"Système DM-i/DM-p",d:"Défaut système",s:"Diagnostic",g:"Grave"}],
-    "Électrique": [{t:"Batterie Blade",d:"Perte autonomie",s:"Diagnostic BMS",g:"Grave"}]
   }
 };
 
-// Modèles avec motorisations
-const MODELES = {
+// Pannes spécifiques MOTO/SCOOTER
+const PANNES_MOTO = {
+  "Yamaha": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit, usure couronne",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche, amortissement réduit",s:"Remplacement joints spi + huile fourche",g:"Moyenne"},
+    {t:"Plaquettes de frein usées",d:"Perte efficacité freinage, bruit métal",s:"Remplacement plaquettes avant/arrière",g:"Faible"},
+    {t:"Embrayage patine",d:"Patina à l'accélération, régime monte sans vitesse",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Batterie faible",d:"Démarrage difficile, batterie ne tient plus",s:"Remplacement batterie 12V",g:"Faible"},
+    {t:"Carburateur encrassé",d:"Ralenti instable, calages, surconsommation",s:"Nettoyage carburateur + gicleurs",g:"Moyenne"},
+    {t:"Bobine d'allumage HS",d:"Ratés d'allumage, voyant moteur",s:"Remplacement bobine d'allumage",g:"Moyenne"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus, surtension",s:"Remplacement régulateur redresseur",g:"Grave"},
+    {t:"Pompe à essence défaillante",d:"Perte puissance, calages",s:"Remplacement pompe à essence",g:"Grave"},
+    {t:"Capteur TPS défectueux",d:"Accélération saccadée, voyant moteur",s:"Remplacement capteur TPS",g:"Moyenne"}
+  ],
+  "Honda": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit, usure couronne",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi + huile fourche",g:"Moyenne"},
+    {t:"Variateur usé (scooter)",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission (scooter)",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Capteur IAC défectueux",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue, consommation huile",s:"Remplacement pompe à huile",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon, blocage",s:"Remplacement roulements de direction",g:"Grave"}
+  ],
+  "Kawasaki": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de roue",d:"Bruit anormal, jeu dans la roue",s:"Remplacement roulements",g:"Moyenne"}
+  ],
+  "Suzuki": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"}
+  ],
+  "BMW": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche Telelever/Paralever",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Cardan usé",d:"Vibrations, bruit anormal",s:"Remplacement cardan",g:"Grave"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Capteur ABS défectueux",d:"Voyant ABS allumé",s:"Remplacement capteur ABS",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Suspension ESA défaillante",d:"Réglage électronique HS",s:"Remplacement vérin ESA",g:"Grave"},
+    {t:"Pompe à huile Boxer",d:"Fuite huile moteur",s:"Remplacement pompe à huile",g:"Grave"}
+  ],
+  "Ducati": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Desmodromique à régler",d:"Jeu aux soupapes, bruit moteur",s:"Réglage desmodromique",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"}
+  ],
+  "KTM": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche WP",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Harley-Davidson": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Courroie de transmission usée",d:"Fissures courroie, bruit",s:"Remplacement courroie",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pousserie de culbuteur usée",d:"Bruit moteur, perte puissance",s:"Remplacement pousserie",g:"Grave"},
+    {t:"Joint de culasse",d:"Fuite huile moteur",s:"Remplacement joint de culasse",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"}
+  ],
+  "Triumph": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche Showa",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Piaggio": [
+    {t:"Variateur usé",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue",s:"Remplacement pompe à huile",g:"Grave"}
+  ],
+  "Vespa": [
+    {t:"Variateur usé",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue",s:"Remplacement pompe à huile",g:"Grave"}
+  ],
+  "Peugeot": [
+    {t:"Variateur usé",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue",s:"Remplacement pompe à huile",g:"Grave"}
+  ],
+  "Aprilia": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "MV Agusta": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche Marzocchi/Öhlins",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Royal Enfield": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Joint de culasse",d:"Fuite huile moteur",s:"Remplacement joint de culasse",g:"Grave"},
+    {t:"Pousserie de culbuteur usée",d:"Bruit moteur, perte puissance",s:"Remplacement pousserie",g:"Grave"}
+  ],
+  "Indian": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Courroie de transmission usée",d:"Fissures courroie, bruit",s:"Remplacement courroie",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pousserie de culbuteur usée",d:"Bruit moteur, perte puissance",s:"Remplacement pousserie",g:"Grave"},
+    {t:"Joint de culasse",d:"Fuite huile moteur",s:"Remplacement joint de culasse",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"}
+  ],
+  "Husqvarna": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche WP",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Beta": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "GasGas": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Sherco": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "TM Racing": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Roulements de direction",d:"Jeu dans le guidon",s:"Remplacement roulements",g:"Grave"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur d'angle d'ouverture papillon",d:"Accélération saccadée",s:"Remplacement capteur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Benelli": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "CF Moto": [
+    {t:"Chaîne de transmission usée",d:"Allongement chaîne, bruit",s:"Remplacement chaîne + couronne + pignon",g:"Moyenne"},
+    {t:"Fourche qui fuit",d:"Fuite huile fourche",s:"Remplacement joints spi",g:"Moyenne"},
+    {t:"Embrayage patine",d:"Patina à l'accélération",s:"Remplacement disques embrayage",g:"Grave"},
+    {t:"Régulateur de tension",d:"Batterie ne charge plus",s:"Remplacement régulateur",g:"Grave"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Pompe à essence",d:"Perte puissance",s:"Remplacement pompe",g:"Grave"},
+    {t:"Capteur TPS",d:"Accélération saccadée",s:"Remplacement capteur TPS",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Radiateur percé",d:"Fuite liquide refroidissement",s:"Remplacement radiateur",g:"Grave"}
+  ],
+  "Kymco": [
+    {t:"Variateur usé",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue",s:"Remplacement pompe à huile",g:"Grave"}
+  ],
+  "SYM": [
+    {t:"Variateur usé",d:"Perte accélération, bruit anormal",s:"Remplacement kit variateur + galets",g:"Moyenne"},
+    {t:"Courroie de transmission",d:"Rupture courroie, scooter ne roule plus",s:"Remplacement courroie transmission",g:"Grave"},
+    {t:"Embrayage centrifuge usé",d:"Patina au démarrage, vibrations",s:"Remplacement embrayage centrifuge",g:"Moyenne"},
+    {t:"Batterie faible",d:"Démarrage électrique difficile",s:"Remplacement batterie",g:"Faible"},
+    {t:"Bobine d'allumage",d:"Ratés d'allumage",s:"Remplacement bobine",g:"Moyenne"},
+    {t:"Carburateur encrassé",d:"Ralenti instable",s:"Nettoyage carburateur",g:"Moyenne"},
+    {t:"Roulements de roue",d:"Bruit anormal",s:"Remplacement roulements",g:"Moyenne"},
+    {t:"Amortisseur arrière usé",d:"Perte d'amortissement",s:"Remplacement amortisseur",g:"Moyenne"},
+    {t:"Capteur IAC",d:"Ralenti instable",s:"Remplacement capteur IAC",g:"Moyenne"},
+    {t:"Pompe à huile usée",d:"Fumée bleue",s:"Remplacement pompe à huile",g:"Grave"}
+  ]
+};
+
+// Modèles voitures (simplifié pour la place)
+const MODELES_VOITURE = {
   "Peugeot": {
     "208": ["1.2 PureTech 82ch Essence", "1.2 PureTech 100ch Essence", "1.2 PureTech 130ch Essence", "1.5 BlueHDi 100ch Diesel", "e-208 100kW Électrique"],
     "2008": ["1.2 PureTech 100ch Essence", "1.2 PureTech 130ch Essence", "1.5 BlueHDi 110ch Diesel", "e-2008 100kW Électrique"],
@@ -939,21 +967,299 @@ const MODELES = {
   }
 };
 
+// Modèles MOTO/SCOOTER
+const MODELES_MOTO = {
+  "Yamaha": {
+    "MT-07": ["689cc 75ch Essence", "689cc 73ch Essence", "CP2 75ch Essence"],
+    "MT-09": ["890cc 119ch Essence", "890cc 115ch Essence", "CP3 119ch Essence"],
+    "MT-10": ["998cc 166ch Essence", "998cc 160ch Essence", "R6 166ch Essence"],
+    "YZF-R1": ["998cc 200ch Essence", "998cc 197ch Essence", "M 200ch Essence"],
+    "YZF-R6": ["599cc 117ch Essence", "599cc 115ch Essence"],
+    "Tracer 7": ["689cc 75ch Essence", "689cc 73ch Essence", "GT 75ch Essence"],
+    "Tracer 9": ["890cc 119ch Essence", "890cc 115ch Essence", "GT 119ch Essence"],
+    "Ténéré 700": ["689cc 75ch Essence", "689cc 73ch Essence", "Rally 75ch Essence"],
+    "XMAX": ["125cc 15ch Essence", "300cc 28ch Essence", "400cc 34ch Essence"],
+    "NMAX": ["125cc 15ch Essence", "155cc 15ch Essence"],
+    "TMAX": ["532cc 48ch Essence", "560cc 48ch Essence", "SX 48ch Essence", "Tech MAX 48ch Essence"],
+    "XSR": ["689cc 75ch Essence", "900cc 115ch Essence", "700 75ch Essence", "900 115ch Essence"]
+  },
+  "Honda": {
+    "CB650R": ["649cc 95ch Essence", "649cc 90ch Essence", "Neo Sports Café 95ch Essence"],
+    "CB1000R": ["998cc 145ch Essence", "998cc 143ch Essence", "Black Edition 145ch Essence"],
+    "CBR650R": ["649cc 95ch Essence", "649cc 90ch Essence"],
+    "CBR1000RR": ["999cc 189ch Essence", "999cc 192ch Essence", "Fireblade 189ch Essence", "RR-R 217ch Essence"],
+    "Africa Twin": ["1084cc 102ch Essence", "1084cc 98ch Essence", "CRF1100L 102ch Essence", "Adventure Sports 102ch Essence"],
+    "NC750X": ["745cc 55ch Essence", "745cc 54ch Essence", "DCT 55ch Essence", "Adventure 55ch Essence"],
+    "Forza": ["125cc 15ch Essence", "300cc 25ch Essence", "350cc 29ch Essence", "750 59ch Essence"],
+    "PCX": ["125cc 15ch Essence", "150cc 16ch Essence", "Hybrid 15ch Hybride"],
+    "SH": ["125cc 15ch Essence", "150cc 16ch Essence", "300cc 25ch Essence", "350cc 29ch Essence"],
+    "Gold Wing": ["1833cc 126ch Essence", "1833cc 125ch Essence", "Tour 126ch Essence", "DCT 126ch Essence"]
+  },
+  "Kawasaki": {
+    "Z650": ["649cc 68ch Essence", "649cc 67ch Essence"],
+    "Z900": ["948cc 125ch Essence", "948cc 122ch Essence", "SE 125ch Essence"],
+    "Z1000": ["1043cc 142ch Essence", "1043cc 140ch Essence", "R 142ch Essence"],
+    "Ninja 650": ["649cc 68ch Essence", "649cc 67ch Essence"],
+    "Ninja 1000": ["1043cc 142ch Essence", "1043cc 140ch Essence", "SX 142ch Essence"],
+    "Ninja ZX-10R": ["998cc 203ch Essence", "998cc 200ch Essence", "RR 203ch Essence", "SE 203ch Essence"],
+    "Ninja ZX-6R": ["599cc 130ch Essence", "636cc 130ch Essence", "RR 130ch Essence"],
+    "Versys 650": ["649cc 68ch Essence", "649cc 67ch Essence", "SE 68ch Essence"],
+    "Versys 1000": ["1043cc 120ch Essence", "1043cc 118ch Essence", "SE 120ch Essence"],
+    "J125": ["125cc 15ch Essence"],
+    "J300": ["299cc 28ch Essence"]
+  },
+  "Suzuki": {
+    "GSX-S750": ["750cc 115ch Essence", "750cc 113ch Essence"],
+    "GSX-S1000": ["999cc 150ch Essence", "999cc 148ch Essence", "GT 150ch Essence", "GT+ 150ch Essence"],
+    "GSX-R750": ["750cc 150ch Essence", "750cc 148ch Essence"],
+    "GSX-R1000": ["999cc 199ch Essence", "999cc 197ch Essence", "R 199ch Essence", "RZ 199ch Essence"],
+    "V-Strom 650": ["645cc 71ch Essence", "645cc 69ch Essence", "XT 71ch Essence"],
+    "V-Strom 1050": ["1037cc 107ch Essence", "1037cc 105ch Essence", "XT 107ch Essence", "DE 107ch Essence"],
+    "Katana": ["999cc 150ch Essence", "999cc 148ch Essence"],
+    "Hayabusa": ["1340cc 190ch Essence", "1340cc 187ch Essence"],
+    "Burgman": ["125cc 15ch Essence", "200cc 18ch Essence", "400cc 34ch Essence", "650 54ch Essence"]
+  },
+  "BMW": {
+    "R1250GS": ["1254cc 136ch Essence", "1254cc 134ch Essence", "Adventure 136ch Essence", "HP 136ch Essence", "Rallye 136ch Essence"],
+    "R1300GS": ["1300cc 145ch Essence", "1300cc 143ch Essence", "Adventure 145ch Essence"],
+    "S1000RR": ["999cc 207ch Essence", "999cc 205ch Essence", "M 212ch Essence", "HP4 212ch Essence"],
+    "S1000R": ["999cc 165ch Essence", "999cc 163ch Essence", "M 165ch Essence"],
+    "S1000XR": ["999cc 165ch Essence", "999cc 163ch Essence", "SE 165ch Essence"],
+    "F900R": ["895cc 105ch Essence", "895cc 103ch Essence", "M 105ch Essence"],
+    "F900XR": ["895cc 105ch Essence", "895cc 103ch Essence", "SE 105ch Essence"],
+    "F850GS": ["853cc 95ch Essence", "853cc 93ch Essence", "Adventure 95ch Essence", "Rallye 95ch Essence"],
+    "G310GS": ["313cc 34ch Essence", "313cc 33ch Essence"],
+    "C400X": ["350cc 34ch Essence", "350cc 33ch Essence", "Sport 34ch Essence"],
+    "C400GT": ["350cc 34ch Essence", "350cc 33ch Essence"],
+    "CE04": ["Electric 42ch Électrique", "Electric 31kW Électrique"]
+  },
+  "Ducati": {
+    "Monster": ["937cc 111ch Essence", "937cc 109ch Essence", "Plus 111ch Essence", "SP 111ch Essence"],
+    "Streetfighter": ["937cc 111ch Essence", "1103cc 153ch Essence", "V2 155ch Essence", "V4 208ch Essence", "V4S 214ch Essence", "V4R 221ch Essence"],
+    "Panigale": ["955cc 155ch Essence", "1103cc 214ch Essence", "V2 155ch Essence", "V4 214ch Essence", "V4S 214ch Essence", "V4R 221ch Essence", "V4SP2 214ch Essence"],
+    "Multistrada": ["937cc 111ch Essence", "1158cc 170ch Essence", "V2 170ch Essence", "V4 170ch Essence", "V4S 170ch Essence", "V4 Rally 170ch Essence", "Enduro 170ch Essence"],
+    "Scrambler": ["803cc 73ch Essence", "803cc 71ch Essence", "1100 86ch Essence", "DesertX 110ch Essence", "Icon 73ch Essence", "Nightshift 73ch Essence"],
+    "Diavel": ["1262cc 162ch Essence", "1262cc 159ch Essence", "V4 168ch Essence", "X 162ch Essence", "X4 168ch Essence"],
+    "SuperSport": ["937cc 110ch Essence", "937cc 108ch Essence", "950 110ch Essence", "S 110ch Essence"]
+  },
+  "KTM": {
+    "390 Duke": ["373cc 44ch Essence", "373cc 43ch Essence"],
+    "790 Duke": ["799cc 105ch Essence", "799cc 103ch Essence", "R 105ch Essence"],
+    "890 Duke": ["889cc 119ch Essence", "889cc 117ch Essence", "R 121ch Essence", "Rally 121ch Essence"],
+    "1290 Super Duke": ["1301cc 180ch Essence", "1301cc 177ch Essence", "R 180ch Essence", "EVO 180ch Essence", "GT 175ch Essence"],
+    "390 Adventure": ["373cc 44ch Essence", "373cc 43ch Essence", "R 44ch Essence"],
+    "790 Adventure": ["799cc 95ch Essence", "799cc 93ch Essence", "R 95ch Essence", "T 95ch Essence"],
+    "890 Adventure": ["889cc 105ch Essence", "889cc 103ch Essence", "R 105ch Essence", "Rally 105ch Essence"],
+    "1290 Super Adventure": ["1301cc 160ch Essence", "1301cc 157ch Essence", "R 160ch Essence", "S 160ch Essence"],
+    "RC 390": ["373cc 44ch Essence", "373cc 43ch Essence"],
+    "RC 8C": ["1350cc 160ch Essence"]
+  },
+  "Harley-Davidson": {
+    "Iron 883": ["883cc 52ch Essence", "883cc 50ch Essence", "Forty-Eight 52ch Essence", "1200 Custom 67ch Essence"],
+    "Sportster S": ["1252cc 121ch Essence", "1252cc 119ch Essence", "Nightster 90ch Essence"],
+    "Street Bob": ["114 155ch Essence", "114 153ch Essence", "107 145ch Essence", "107 143ch Essence"],
+    "Fat Bob": ["114 155ch Essence", "114 153ch Essence", "107 145ch Essence", "107 143ch Essence"],
+    "Low Rider": ["114 155ch Essence", "114 153ch Essence", "S 125ch Essence", "ST 125ch Essence"],
+    "Road King": ["114 155ch Essence", "114 153ch Essence", "107 145ch Essence", "107 143ch Essence", "Special 155ch Essence"],
+    "Street Glide": ["114 155ch Essence", "114 153ch Essence", "107 145ch Essence", "107 143ch Essence", "Special 155ch Essence"],
+    "Road Glide": ["114 155ch Essence", "114 153ch Essence", "107 145ch Essence", "107 143ch Essence", "Special 155ch Essence", "Limited 155ch Essence", "Ultra Limited 155ch Essence"],
+    "LiveWire": ["Electric 105ch Électrique", "S2 Del Mar 80ch Électrique"]
+  },
+  "Triumph": {
+    "Street Triple": ["765cc 118ch Essence", "765cc 116ch Essence", "R 123ch Essence", "RS 130ch Essence", "765 R 123ch Essence", "765 RS 130ch Essence"],
+    "Speed Triple": ["1050cc 150ch Essence", "1200cc 180ch Essence", "1200 RS 180ch Essence", "1200 RR 180ch Essence"],
+    "Daytona": ["660cc 95ch Essence", "765cc 130ch Essence", "Moto2 140ch Essence"],
+    "Tiger 900": ["888cc 95ch Essence", "888cc 93ch Essence", "GT 95ch Essence", "GT Pro 95ch Essence", "Rally 95ch Essence", "Rally Pro 95ch Essence"],
+    "Tiger 1200": ["1160cc 150ch Essence", "1160cc 147ch Essence", "GT 150ch Essence", "GT Explorer 150ch Essence", "Rally 150ch Essence", "Rally Explorer 150ch Essence"],
+    "Bonneville": ["900cc 55ch Essence", "900cc 54ch Essence", "T100 55ch Essence", "T120 80ch Essence", "Bobber 77ch Essence", "Speedmaster 77ch Essence", "Thruxton 97ch Essence", "Thruxton R 97ch Essence", "Thruxton RS 105ch Essence"],
+    "Rocket": ["2458cc 165ch Essence", "2458cc 163ch Essence", "3 165ch Essence", "GT 165ch Essence", "R 165ch Essence"]
+  },
+  "Piaggio": {
+    "Beverly": ["125cc 15ch Essence", "300cc 28ch Essence", "350cc 31ch Essence", "400cc 37ch Essence"],
+    "Medley": ["125cc 15ch Essence", "150cc 16ch Essence"],
+    "Liberty": ["50cc 4ch Essence", "125cc 15ch Essence", "150cc 16ch Essence"],
+    "MP3": ["300cc 28ch Essence", "400cc 37ch Essence", "500cc 48ch Essence", "HPE 500cc 48ch Essence"],
+    "X-Evo": ["125cc 15ch Essence", "250cc 22ch Essence", "400cc 37ch Essence"]
+  },
+  "Vespa": {
+    "Primavera": ["50cc 4ch Essence", "125cc 15ch Essence", "150cc 16ch Essence"],
+    "Sprint": ["50cc 4ch Essence", "125cc 15ch Essence", "150cc 16ch Essence"],
+    "GTS": ["125cc 15ch Essence", "300cc 28ch Essence", "Super 300cc 28ch Essence", "Super Sport 300cc 28ch Essence", "Touring 300cc 28ch Essence"],
+    "GTS Super Sport": ["300cc 28ch Essence", "Super Tech 300cc 28ch Essence"],
+    "Elettrica": ["Electric 4ch Électrique", "Electric 15ch Électrique"]
+  },
+  "Peugeot": {
+    "Django": ["125cc 15ch Essence", "150cc 16ch Essence", "200cc 18ch Essence"],
+    "Kisbee": ["50cc 4ch Essence", "100cc 10ch Essence"],
+    "Speedfight": ["50cc 4ch Essence", "100cc 10ch Essence", "4 50cc 4ch Essence"],
+    "Citystar": ["125cc 15ch Essence", "200cc 18ch Essence"],
+    "Satelis": ["125cc 15ch Essence", "400cc 37ch Essence", "500cc 42ch Essence"]
+  },
+  "Aprilia": {
+    "RS 660": ["659cc 100ch Essence", "659cc 95ch Essence"],
+    "Tuono 660": ["659cc 100ch Essence", "659cc 95ch Essence"],
+    "RSV4": ["1078cc 217ch Essence", "1078cc 220ch Essence", "Factory 220ch Essence"],
+    "Tuono V4": ["1078cc 217ch Essence", "1078cc 220ch Essence", "Factory 220ch Essence"],
+    "Shiver 900": ["896cc 95ch Essence", "896cc 90ch Essence"],
+    "Dorsoduro 900": ["896cc 95ch Essence", "896cc 90ch Essence"],
+    "Caponord 1200": ["1197cc 125ch Essence", "1197cc 120ch Essence"],
+    "SR GT": ["125cc 15ch Essence", "200cc 18ch Essence"]
+  },
+  "MV Agusta": {
+    "Brutale 800": ["798cc 115ch Essence", "798cc 110ch Essence", "RR 140ch Essence"],
+    "Dragster 800": ["798cc 115ch Essence", "798cc 110ch Essence", "RR 140ch Essence"],
+    "F3 800": ["798cc 148ch Essence", "798cc 140ch Essence", "RC 148ch Essence"],
+    "F4": ["998cc 201ch Essence", "998cc 212ch Essence", "RR 212ch Essence"],
+    "Superveloce 800": ["798cc 148ch Essence", "798cc 140ch Essence"],
+    "Turismo Veloce 800": ["798cc 110ch Essence", "798cc 105ch Essence"],
+    "Rush 1000": ["998cc 208ch Essence", "998cc 200ch Essence"]
+  },
+  "Royal Enfield": {
+    "Classic 350": ["349cc 20ch Essence", "349cc 19ch Essence"],
+    "Bullet 350": ["349cc 20ch Essence", "349cc 19ch Essence"],
+    "Meteor 350": ["349cc 20ch Essence", "349cc 19ch Essence"],
+    "Hunter 350": ["349cc 20ch Essence", "349cc 19ch Essence"],
+    "Himalayan 450": ["452cc 40ch Essence", "452cc 38ch Essence"],
+    "Scram 411": ["411cc 24ch Essence", "411cc 23ch Essence"],
+    "Interceptor 650": ["648cc 47ch Essence", "648cc 45ch Essence"],
+    "Continental GT 650": ["648cc 47ch Essence", "648cc 45ch Essence"],
+    "Super Meteor 650": ["648cc 47ch Essence", "648cc 45ch Essence"],
+    "Shotgun 650": ["648cc 47ch Essence", "648cc 45ch Essence"]
+  },
+  "Indian": {
+    "Scout": ["1133cc 100ch Essence", "1133cc 95ch Essence"],
+    "Scout Bobber": ["1133cc 100ch Essence", "1133cc 95ch Essence"],
+    "Scout Rogue": ["1133cc 100ch Essence", "1133cc 95ch Essence"],
+    "Chief": ["1890cc 105ch Essence", "1890cc 100ch Essence"],
+    "Chief Dark Horse": ["1890cc 105ch Essence", "1890cc 100ch Essence"],
+    "Chieftain": ["1890cc 105ch Essence", "1890cc 100ch Essence"],
+    "Roadmaster": ["1890cc 105ch Essence", "1890cc 100ch Essence"],
+    "Springfield": ["1890cc 105ch Essence", "1890cc 100ch Essence"],
+    "FTR 1200": ["1203cc 120ch Essence", "1203cc 115ch Essence"],
+    "Pursuit": ["1890cc 105ch Essence", "1890cc 100ch Essence"]
+  },
+  "Husqvarna": {
+    "Vitpilen 401": ["373cc 44ch Essence", "373cc 43ch Essence"],
+    "Svartpilen 401": ["373cc 44ch Essence", "373cc 43ch Essence"],
+    "Vitpilen 701": ["693cc 75ch Essence", "693cc 72ch Essence"],
+    "Svartpilen 701": ["693cc 75ch Essence", "693cc 72ch Essence"],
+    "Norden 901": ["889cc 105ch Essence", "889cc 100ch Essence"],
+    "701 Supermoto": ["693cc 75ch Essence", "693cc 72ch Essence"],
+    "701 Enduro": ["693cc 75ch Essence", "693cc 72ch Essence"],
+    "TE 300": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "FE 350": ["349cc 55ch Essence", "349cc 52ch Essence"],
+    "FE 501": ["510cc 60ch Essence", "510cc 58ch Essence"]
+  },
+  "Beta": {
+    "390 RR": ["390cc 40ch Essence", "390cc 38ch Essence"],
+    "430 RR": ["430cc 45ch Essence", "430cc 43ch Essence"],
+    "480 RR": ["480cc 50ch Essence", "480cc 48ch Essence"],
+    "500 RR": ["498cc 55ch Essence", "498cc 52ch Essence"],
+    "300 RR 2T": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "250 RR 2T": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "Alp 4.0": ["398cc 40ch Essence", "398cc 38ch Essence"],
+    "Xtrainer 300": ["293cc 30ch Essence", "293cc 28ch Essence"]
+  },
+  "GasGas": {
+    "EC 250": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "EC 300": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "MC 250F": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "MC 450F": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "SM 125": ["124cc 15ch Essence", "124cc 14ch Essence"],
+    "SMR 450F": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "ES 700": ["693cc 75ch Essence", "693cc 72ch Essence"]
+  },
+  "Sherco": {
+    "SEF 250": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "SEF 300": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "SEF 450": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "SEF 510": ["510cc 60ch Essence", "510cc 58ch Essence"],
+    "SE 250 2T": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "SE 300 2T": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "SEF 300 Factory": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "SE 300 Factory 2T": ["293cc 50ch Essence", "293cc 48ch Essence"]
+  },
+  "TM Racing": {
+    "SMR 450 Fi": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "EN 300 Fi": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "EN 250 Fi": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "MX 450 Fi": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "MX 250 Fi": ["249cc 45ch Essence", "249cc 43ch Essence"],
+    "SMX 450 Fi": ["449cc 60ch Essence", "449cc 58ch Essence"],
+    "EN 300 2T": ["293cc 50ch Essence", "293cc 48ch Essence"],
+    "MX 250 2T": ["249cc 45ch Essence", "249cc 43ch Essence"]
+  },
+  "Benelli": {
+    "TNT 600": ["600cc 82ch Essence", "600cc 78ch Essence"],
+    "TNT 300": ["300cc 38ch Essence", "300cc 36ch Essence"],
+    "TNT 125": ["125cc 11ch Essence", "125cc 10ch Essence"],
+    "Leoncino 500": ["500cc 47ch Essence", "500cc 45ch Essence"],
+    "Leoncino 250": ["250cc 26ch Essence", "250cc 24ch Essence"],
+    "TRK 502": ["500cc 47ch Essence", "500cc 45ch Essence"],
+    "TRK 251": ["250cc 26ch Essence", "250cc 24ch Essence"],
+    "502C": ["500cc 47ch Essence", "500cc 45ch Essence"],
+    "752S": ["754cc 76ch Essence", "754cc 72ch Essence"],
+    "Imperiale 400": ["374cc 21ch Essence", "374cc 20ch Essence"]
+  },
+  "CF Moto": {
+    "800MT": ["799cc 95ch Essence", "799cc 90ch Essence"],
+    "700CL-X": ["693cc 75ch Essence", "693cc 72ch Essence"],
+    "650MT": ["649cc 71ch Essence", "649cc 68ch Essence"],
+    "450MT": ["449cc 45ch Essence", "449cc 43ch Essence"],
+    "300NK": ["292cc 38ch Essence", "292cc 36ch Essence"],
+    "250NK": ["249cc 26ch Essence", "249cc 24ch Essence"],
+    "125NK": ["124cc 15ch Essence", "124cc 14ch Essence"],
+    "450SR": ["449cc 45ch Essence", "449cc 43ch Essence"],
+    "250SR": ["249cc 26ch Essence", "249cc 24ch Essence"],
+    "Papio": ["124cc 15ch Essence", "124cc 14ch Essence"]
+  },
+  "Kymco": {
+    "Agility 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "Agility 50": ["50cc 4ch Essence", "50cc 3ch Essence"],
+    "People S 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "People S 200": ["180cc 18ch Essence", "180cc 17ch Essence"],
+    "Downtown 350i": ["321cc 29ch Essence", "321cc 27ch Essence"],
+    "Xciting 400": ["399cc 37ch Essence", "399cc 35ch Essence"],
+    "AK 550": ["550cc 51ch Essence", "550cc 48ch Essence"],
+    "CT 250": ["250cc 22ch Essence", "250cc 20ch Essence"],
+    "Like 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "Vitality 50": ["50cc 4ch Essence", "50cc 3ch Essence"]
+  },
+  "SYM": {
+    "Jet 14 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "Jet 14 50": ["50cc 4ch Essence", "50cc 3ch Essence"],
+    "Cruisym 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "Cruisym 200": ["180cc 18ch Essence", "180cc 17ch Essence"],
+    "Cruisym 300": ["278cc 25ch Essence", "278cc 23ch Essence"],
+    "Maxsym 400": ["399cc 37ch Essence", "399cc 35ch Essence"],
+    "Maxsym 600": ["580cc 51ch Essence", "580cc 48ch Essence"],
+    "Fiddle 125": ["125cc 15ch Essence", "125cc 14ch Essence"],
+    "Fiddle 50": ["50cc 4ch Essence", "50cc 3ch Essence"],
+    "Orbit 125": ["125cc 15ch Essence", "125cc 14ch Essence"]
+  }
+};
+
+// Détection type moteur
+function detecterTypeMoteur(motorisation, marque, modele) {
+  const m = motorisation.toLowerCase();
+  if (m.includes('électrique') || m.includes('electric')) return "Électrique";
+  if (m.includes('hybrid')) return "Hybride";
+  if (m.includes('diesel') || m.includes('tdi') || m.includes('hdi') || m.includes('dci') || m.includes('crdi')) return "Diesel";
+  if (m.includes('gpl') || m.includes('lpg')) return "GPL";
+  return "Essence";
+}
+
 // Génération des fiches
 function genererFiches() {
   let id = 1;
   const annees = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
   
-  for (const [marque, modeles] of Object.entries(MODELES)) {
+  // FICHES VOITURES
+  for (const [marque, modeles] of Object.entries(MODELES_VOITURE)) {
     for (const [modele, motorisations] of Object.entries(modeles)) {
       for (const motorisation of motorisations) {
-        let typeMoteur = "Essence";
-        const m = motorisation.toLowerCase();
-        if (m.includes('électrique') || m.includes('electric')) typeMoteur = "Électrique";
-        else if (m.includes('hybrid')) typeMoteur = "Hybride";
-        else if (m.includes('diesel') || m.includes('tdi') || m.includes('hdi') || m.includes('dci') || m.includes('crdi')) typeMoteur = "Diesel";
-        
-        const pannesMarque = PANNES[marque];
+        const typeMoteur = detecterTypeMoteur(motorisation, marque, modele);
+        const pannesMarque = PANNES_VOITURE[marque];
         const pannes = pannesMarque ? (pannesMarque[typeMoteur] || pannesMarque["Essence"]) : [];
         const nbFiches = Math.max(pannes.length, 3);
         
@@ -984,7 +1290,43 @@ function genererFiches() {
       }
     }
   }
-  console.log('✅ ' + DATABASE.fiches.length + ' fiches générées');
+  
+  // FICHES MOTO/SCOOTER
+  for (const [marque, modeles] of Object.entries(MODELES_MOTO)) {
+    for (const [modele, motorisations] of Object.entries(modeles)) {
+      for (const motorisation of motorisations) {
+        const pannes = PANNES_MOTO[marque] || [];
+        const nbFiches = Math.max(pannes.length, 5);
+        
+        for (let i = 0; i < nbFiches; i++) {
+          const panne = pannes[i % pannes.length] || {t:"Révision générale",d:"Entretien périodique",s:"Vidange + filtres",g:"Faible"};
+          const anneeDebut = annees[Math.floor(Math.random() * annees.length)];
+          const anneeFin = Math.min(anneeDebut + 2, 2026);
+          
+          DATABASE.fiches.push({
+            id: id++,
+            categorie: "Moto",
+            marque: marque,
+            modele: modele,
+            motorisation: motorisation,
+            type_moteur: "Essence",
+            annees: anneeDebut + "-" + anneeFin,
+            campagne: marque.substring(0,3).toUpperCase() + "-" + (2016+Math.floor(Math.random()*10)) + "-" + String(1+Math.floor(Math.random()*999)).padStart(3,'0'),
+            type: Math.random() > 0.4 ? "Panne connue" : "Rappel",
+            titre: panne.t,
+            description: panne.d,
+            gravite: panne.g,
+            date: (2016+Math.floor(Math.random()*10)) + "-" + String(1+Math.floor(Math.random()*12)).padStart(2,'0') + "-" + String(1+Math.floor(Math.random()*28)).padStart(2,'0'),
+            nb_vehicules: 500 + Math.floor(Math.random() * 20000),
+            solution: panne.s,
+            cout: Math.random() > 0.5 ? "Gratuit (prise en charge constructeur)" : "Variable selon concession"
+          });
+        }
+      }
+    }
+  }
+  
+  console.log('✅ ' + DATABASE.fiches.length + ' fiches générées (Voitures + Motos)');
 }
 
 genererFiches();
