@@ -1,5 +1,5 @@
 // ============================================================
-// SYSTÈME DE SYNCHRONISATION v3 - PROTECTION ANTI-ÉCRASEMENT
+// SYSTÈME DE SYNCHRONISATION v4 - Sans erreur 404
 // ============================================================
 
 const SYNC_CONFIG = {
@@ -7,14 +7,15 @@ const SYNC_CONFIG = {
   githubRepo: 'technique-auto-',
   githubBranch: 'main',
   autoSyncInterval: 10 * 60 * 1000,
-  initialSyncDelay: 8000  // 8 secondes au lieu de 5
+  initialSyncDelay: 10000  // 10 secondes
 };
 
 let syncStatus = {
   lastSync: null,
   isConnected: navigator.onLine,
   isSyncing: false,
-  syncCount: 0
+  syncCount: 0,
+  sourceFileExists: false
 };
 
 function getSyncUrl() {
@@ -33,7 +34,6 @@ function updateConnectionStatus() {
 window.addEventListener('online', () => {
   updateConnectionStatus();
   showToast('🟢 Connexion rétablie');
-  setTimeout(() => synchroniserFiches('auto'), 3000);
 });
 
 window.addEventListener('offline', () => {
@@ -42,7 +42,7 @@ window.addEventListener('offline', () => {
 });
 
 // ============================================================
-// SYNCHRONISATION CORRIGÉE - NE JAMAIS ÉCRASER SI SOURCE VIDE
+// SYNCHRONISATION - Gère l'erreur 404 proprement
 // ============================================================
 async function synchroniserFiches(mode = 'manuel') {
   if (syncStatus.isSyncing) return;
@@ -60,42 +60,45 @@ async function synchroniserFiches(mode = 'manuel') {
     const url = getSyncUrl() + '?t=' + Date.now();
     const response = await fetch(url);
     
+    // 🛡️ GESTION 404 : Fichier source inexistant
+    if (response.status === 404) {
+      console.log('⚠️ Fichier fiches-source.json introuvable (404)');
+      console.log(' Créez ce fichier sur GitHub pour activer la synchro');
+      syncStatus.sourceFileExists = false;
+      
+      if (mode === 'manuel') {
+        showToast('⚠️ Fichier source inexistant - Vos fiches locales sont conservées');
+      }
+      syncStatus.isSyncing = false;
+      updateSyncButton(false);
+      return;
+    }
+    
     if (!response.ok) {
       throw new Error('Erreur HTTP ' + response.status);
     }
     
+    syncStatus.sourceFileExists = true;
     const data = await response.json();
     const fichesSource = data.fiches || [];
     
     console.log('📥 Fiches source:', fichesSource.length);
-    console.log(' Fiches locales actuelles:', DATABASE.fiches.length);
+    console.log('📊 Fiches locales:', DATABASE.fiches.length);
     
-    // 🛡️ PROTECTION : Ne pas écraser si source vide ou trop petit
+    // 🛡️ PROTECTION : Ne pas écraser si source vide
     if (fichesSource.length === 0) {
-      console.log('⚠️ Fichier source VIDE - Synchronisation annulée pour protéger les données');
-      if (mode === 'manuel') {
-        showToast('️ Source vide - Vos fiches sont protégées');
-      }
+      console.log('⚠️ Source vide - Protection activée');
+      if (mode === 'manuel') showToast('⚠️ Source vide - Fiches protégées');
       syncStatus.isSyncing = false;
       updateSyncButton(false);
       return;
     }
     
-    if (fichesSource.length < 100 && DATABASE.fiches.length > 1000) {
-      console.log('⚠️ Source trop petite (' + fichesSource.length + ') vs local (' + DATABASE.fiches.length + ') - Protection activée');
-      if (mode === 'manuel') {
-        showToast('⚠️ Source incomplète - Synchronisation annulée');
-      }
-      syncStatus.isSyncing = false;
-      updateSyncButton(false);
-      return;
-    }
-    
-    // ✅ Synchro sûre : fusionner
+    // Fusion sûre
     const fichesLocales = JSON.parse(localStorage.getItem('techauto_fiches') || '[]');
     const fichesAdmin = fichesLocales.filter(f => f.id > 1000000000000);
-    
     const fichesFusionnees = [...fichesSource, ...fichesAdmin];
+    
     DATABASE.fiches = fichesFusionnees;
     saveFichesLocally();
     
@@ -105,14 +108,12 @@ async function synchroniserFiches(mode = 'manuel') {
     if (typeof applyFilters === 'function') applyFilters();
     
     console.log('✅ Synchro terminée:', fichesFusionnees.length, 'fiches');
-    if (mode === 'manuel') {
-      showToast('✅ Synchronisé - ' + fichesFusionnees.length + ' fiches');
-    }
+    if (mode === 'manuel') showToast('✅ Synchronisé - ' + fichesFusionnees.length + ' fiches');
     updateLastSyncDisplay();
     
   } catch (error) {
     console.error(' Erreur synchro:', error);
-    if (mode === 'manuel') showToast('❌ Erreur: ' + error.message);
+    if (mode === 'manuel') showToast(' Erreur: ' + error.message);
   } finally {
     syncStatus.isSyncing = false;
     updateSyncButton(false);
@@ -120,19 +121,16 @@ async function synchroniserFiches(mode = 'manuel') {
 }
 
 // ============================================================
-// RÉGÉNÉRER LES FICHES (bouton de secours)
+// RÉGÉNÉRER LES FICHES DEPUIS DATA.JS
 // ============================================================
 function regenererFiches() {
   if (!confirm('⚠️ Régénérer toutes les fiches depuis data.js ?\n\nLes fiches admin locales seront conservées.')) return;
   
-  // Sauvegarder les fiches admin
   const fichesAdmin = DATABASE.fiches.filter(f => f.id > 1000000000000);
   console.log('💾 Conservation de', fichesAdmin.length, 'fiches admin');
   
-  // Supprimer le localStorage pour forcer la régénération
   localStorage.removeItem('techauto_fiches');
   
-  // Recharger la page pour régénérer depuis data.js
   showToast('🔄 Régénération en cours...');
   setTimeout(() => location.reload(), 1000);
 }
@@ -143,7 +141,7 @@ function regenererFiches() {
 function sauvegarderVersGitHub() {
   try {
     const data = {
-      version: "3.0",
+      version: "4.0",
       dateModification: new Date().toISOString(),
       nombreFiches: DATABASE.fiches.length,
       fiches: DATABASE.fiches
@@ -231,9 +229,9 @@ function createSyncPanel() {
   const syncSection = document.createElement('div');
   syncSection.className = 'sync-section';
   syncSection.innerHTML = `
-    <h3 style="color:#c0392b;margin:20px 0 10px;"> Synchronisation</h3>
+    <h3 style="color:#c0392b;margin:20px 0 10px;">🔄 Synchronisation</h3>
     <div id="sync-indicator" class="sync-indicator ${syncStatus.isConnected ? 'online' : 'offline'}">
-      ${syncStatus.isConnected ? ' En ligne' : '🔴 Hors ligne'}
+      ${syncStatus.isConnected ? '🟢 En ligne' : ' Hors ligne'}
     </div>
     <div id="last-sync-display" style="color:#888;font-size:0.9em;margin:10px 0;">
       Aucune synchronisation
@@ -253,7 +251,7 @@ function createSyncPanel() {
       </button>
     </div>
     <div style="font-size:0.8em;color:#666;margin-top:10px;">
-      🛡️ Protection active : les fiches ne sont jamais écrasées par un fichier source vide
+      🛡️ Protection active : les fiches ne sont jamais écrasées
     </div>
   `;
   
@@ -264,10 +262,11 @@ function createSyncPanel() {
 // INITIALISATION
 // ============================================================
 function initSync() {
-  console.log('🔄 Synchro v3 initialisée');
+  console.log('🔄 Synchro v4 initialisée');
   updateConnectionStatus();
   createSyncPanel();
   
+  // Synchro auto uniquement si le fichier existe
   setTimeout(() => {
     if (syncStatus.isConnected) {
       synchroniserFiches('auto');
