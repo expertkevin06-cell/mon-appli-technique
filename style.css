@@ -513,3 +513,34 @@ header p {
   font-size: 0.7em;
   font-weight: bold;
 }
+/* Synchronisation */
+.sync-section {
+  background: rgba(0,0,0,0.5);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c0392b;
+}
+
+.sync-indicator {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 15px;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.sync-indicator.online {
+  background: #27ae60;
+  color: #fff;
+}
+
+.sync-indicator.offline {
+  background: #c0392b;
+  color: #fff;
+}
+
+#btn-sync:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
