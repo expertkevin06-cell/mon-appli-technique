@@ -1,69 +1,62 @@
 // ============================================================
-// TECHNIQUE AUTO BY KEVIN - Base de données complète
-// Généré automatiquement - 2026
+// TECHNIQUE AUTO BY KEVIN - Base de données complète v5
+// Toutes motorisations réelles + Rappels et pannes connus
+// 2016-2026
 // ============================================================
 
 const DATABASE = {
   marques: {
     "Peugeot": { logo: "🇫🇷", couleur: "#1B3A6B" },
-    "Renault": { logo: "🇫", couleur: "#FFCC33" },
-    "Citroën": { logo: "🇷", couleur: "#CC0000" },
-    "Volkswagen": { logo: "🇩🇪", couleur: "#001E50" },
+    "Renault": { logo: "🇷", couleur: "#FFCC33" },
+    "Citroën": { logo: "🇫🇷", couleur: "#CC0000" },
+    "Volkswagen": { logo: "🇪", couleur: "#001E50" },
     "BMW": { logo: "🇩🇪", couleur: "#0066B1" },
     "Mercedes": { logo: "🇩🇪", couleur: "#333333" },
     "Audi": { logo: "🇩🇪", couleur: "#BB0A30" },
-    "Ford": { logo: "🇺🇸", couleur: "#003478" },
+    "Ford": { logo: "🇸", couleur: "#003478" },
     "Toyota": { logo: "🇯🇵", couleur: "#EB0A1E" },
     "Nissan": { logo: "🇯🇵", couleur: "#C3002F" },
     "Hyundai": { logo: "🇰🇷", couleur: "#002C5F" },
     "Kia": { logo: "🇰🇷", couleur: "#05141F" },
     "Tesla": { logo: "⚡", couleur: "#CC0000" },
-    "Dacia": { logo: "🇷", couleur: "#003DA5" },
-    "Fiat": { logo: "🇹", couleur: "#9D0A0E" },
+    "Dacia": { logo: "🇷🇴", couleur: "#003DA5" },
+    "Fiat": { logo: "🇮🇹", couleur: "#9D0A0E" },
     "Opel": { logo: "🇩🇪", couleur: "#FFD700" },
     "Volvo": { logo: "🇸🇪", couleur: "#003057" },
-    "Mazda": { logo: "🇵", couleur: "#B00D1E" },
+    "Mazda": { logo: "🇯", couleur: "#B00D1E" },
     "Honda": { logo: "🇯🇵", couleur: "#CC0000" },
     "Seat": { logo: "🇪🇸", couleur: "#FFD700" },
-    "Skoda": { logo: "🇨🇿", couleur: "#4BA82E" },
-    "Mini": { logo: "🇬", couleur: "#000000" },
+    "Skoda": { logo: "🇨", couleur: "#4BA82E" },
+    "Mini": { logo: "🇧", couleur: "#000000" },
     "Alfa Romeo": { logo: "🇮🇹", couleur: "#8B0000" },
     "Jaguar": { logo: "🇬🇧", couleur: "#000000" },
-    "Alpine": { logo: "🇷", couleur: "#0055A4" },
+    "Alpine": { logo: "🇫🇷", couleur: "#0055A4" },
     "BYD": { logo: "🇨🇳", couleur: "#003DA5" },
-    "Jeep": { logo: "🇺🇸", couleur: "#1E5631" }
+    "Jeep": { logo: "🇺", couleur: "#1E5631" }
   },
   
   marquesMoto: {
     "Yamaha": { logo: "🇯🇵", couleur: "#003DA5" },
     "Kawasaki": { logo: "🇯🇵", couleur: "#00A651" },
-    "Ducati": { logo: "🇮🇹", couleur: "#CC0000" },
-    "KTM": { logo: "🇦", couleur: "#FF6B00" },
-    "Suzuki": { logo: "🇯🇵", couleur: "#003DA5" },
-    "Triumph": { logo: "🇬🇧", couleur: "#000000" },
-    "Harley-Davidson": { logo: "🇸", couleur: "#FF6B00" },
-    "Piaggio": { logo: "🇮🇹", couleur: "#003DA5" },
-    "Vespa": { logo: "🇮🇹", couleur: "#00A651" },
-    "BMW Moto": { logo: "🇪", couleur: "#0066B1" },
-    "Honda Moto": { logo: "🇯🇵", couleur: "#CC0000" },
-    "Peugeot Moto": { logo: "🇫🇷", couleur: "#1B3A6B" }
+    "BMW Moto": { logo: "🇩", couleur: "#0066B1" },
+    "Honda Moto": { logo: "🇯🇵", couleur: "#CC0000" }
   },
   
   fiches: []
 };
 
 // ============================================================
-// MOTORISATIONS COMPLÈTES PAR MARQUE ET MODÈLE
+// MOTORISATIONS COMPLÈTES PAR MARQUE
 // ============================================================
 const MOTORISATIONS = {
   "Peugeot": {
     "208": ["1.2 PureTech 82ch Essence", "1.2 PureTech 100ch Essence", "1.2 PureTech 130ch Essence", "1.5 BlueHDi 100ch Diesel", "e-208 100kW Électrique"],
     "2008": ["1.2 PureTech 100ch Essence", "1.2 PureTech 130ch Essence", "1.5 BlueHDi 110ch Diesel", "e-2008 100kW Électrique"],
     "308": ["1.2 PureTech 110ch Essence", "1.2 PureTech 130ch Essence", "1.5 BlueHDi 130ch Diesel", "1.6 Hybrid 180ch Hybride", "e-308 115kW Électrique"],
-    "3008": ["1.2 PureTech 130ch Essence", "1.5 BlueHDi 130ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "1.6 Hybrid 225ch Hybride", "e-3008 157kW Électrique"],
+    "3008": ["1.2 PureTech 130ch Essence", "1.6 THP 165ch Essence", "1.5 BlueHDi 130ch Diesel", "1.5 BlueHDi 150ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "1.6 Hybrid 225ch Hybride", "e-3008 157kW Électrique"],
     "408": ["1.2 PureTech 130ch Essence", "1.5 BlueHDi 130ch Diesel", "1.6 Hybrid 180ch Hybride", "e-408 157kW Électrique"],
-    "508": ["1.2 PureTech 130ch Essence", "1.5 BlueHDi 130ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "1.6 Hybrid 225ch Hybride"],
-    "5008": ["1.2 PureTech 130ch Essence", "1.5 BlueHDi 130ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "e-5008 157kW Électrique"],
+    "508": ["1.2 PureTech 130ch Essence", "1.6 THP 180ch Essence", "1.5 BlueHDi 130ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "1.6 Hybrid 225ch Hybride"],
+    "5008": ["1.2 PureTech 130ch Essence", "1.6 THP 180ch Essence", "1.5 BlueHDi 130ch Diesel", "2.0 BlueHDi 180ch Diesel", "1.6 Hybrid 180ch Hybride", "e-5008 157kW Électrique"],
     "Rifter": ["1.2 PureTech 110ch Essence", "1.5 BlueHDi 100ch Diesel", "1.5 BlueHDi 130ch Diesel", "ë-Rifter 100kW Électrique"],
     "Partner": ["1.2 PureTech 110ch Essence", "1.5 BlueHDi 100ch Diesel", "1.5 BlueHDi 130ch Diesel", "ë-Partner 100kW Électrique"],
     "Expert": ["1.5 BlueHDi 120ch Diesel", "2.0 BlueHDi 150ch Diesel", "2.0 BlueHDi 180ch Diesel", "ë-Expert 100kW Électrique"],
@@ -454,7 +447,144 @@ const MOTORISATIONS = {
 };
 
 // ============================================================
-// GÉNÉRATION AUTOMATIQUE DES FICHES
+// BASE DE DONNÉES MASSIVE DE PANNES ET RAPPELS
+// ============================================================
+const PANNES = [
+  // PEUGEOT - Rappels et pannes connus
+  {t:"Courroie distribution humide",d:"Désagrégation courroie dans l'huile moteur 1.2 PureTech",s:"Remplacement courroie + pompe à huile + vidange",g:"Très grave"},
+  {t:"Consommation huile excessive",d:"Moteur 1.2 PureTech consomme jusqu'à 1L/1000km",s:"Vérification segmentation, remplacement moteur si nécessaire",g:"Grave"},
+  {t:"Turbo 1.5 BlueHDi défaillant",d:"Perte de puissance, fumée bleue",s:"Remplacement turbo + nettoyage admission",g:"Grave"},
+  {t:"FAP 1.5 BlueHDi colmaté",d:"Témoin FAP allumé, perte de puissance",s:"Régénération forcée ou remplacement FAP",g:"Moyenne"},
+  {t:"Boîte EAT8 défaillante",d:"À-coups, calages, voyant défaut",s:"Mise à jour calculateur ou remplacement boîte",g:"Grave"},
+  {t:"Système AdBlue défaillant",d:"Démarrage impossible après compte à rebours",s:"Remplacement réservoir AdBlue + pompe",g:"Grave"},
+  {t:"Étriers de frein grippés",d:"Usure prématurée plaquettes, voiture qui tire",s:"Remplacement étriers + disques",g:"Moyenne"},
+  {t:"Direction assistée défaillante",d:"Direction dure, voyant direction",s:"Remplacement colonne ou crémaillère",g:"Grave"},
+  {t:"Climatisation perte froid",d:"Plus de froid après 2-3 ans",s:"Recharge clim + recherche fuite",g:"Faible"},
+  {t:"Calculateur moteur HS",d:"Véhicule ne démarre plus",s:"Remplacement calculateur + codage",g:"Très grave"},
+  
+  // RENAULT - Rappels et pannes connus
+  {t:"Boîte EDC défaillante",d:"À-coups, bruits anormaux, voyant",s:"Mise à jour ou remplacement boîte EDC",g:"Grave"},
+  {t:"Moteur 1.5 dCi injection",d:"Injecteurs grippés, démarrage difficile",s:"Remplacement injecteurs + codage",g:"Grave"},
+  {t:"Turbo 1.3 TCe fragile",d:"Perte de puissance, sifflement",s:"Remplacement turbo + lignes",g:"Grave"},
+  {t:"Courroie distribution 1.5 dCi",d:"Risque de rupture avant 120 000km",s:"Remplacement préventif kit distribution",g:"Très grave"},
+  {t:"Carte main libre défectueuse",d:"Véhicule ne détecte pas la carte",s:"Remplacement carte ou récepteur",g:"Faible"},
+  {t:"Alternateur 1.5 dCi HS",d:"Batterie ne charge plus",s:"Remplacement alternateur",g:"Moyenne"},
+  {t:"Embrayage usure prématurée",d:"Patina avant 80 000km",s:"Remplacement kit embrayage complet",g:"Grave"},
+  {t:"Pompe à eau 1.5 dCi",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau + courroie",g:"Moyenne"},
+  {t:"Vanne EGR encrassée",d:"Ralentir instable, fumée noire",s:"Nettoyage ou condamnation EGR",g:"Moyenne"},
+  {t:"Débitmètre défectueux",d:"Perte de puissance, surconsommation",s:"Remplacement débitmètre",g:"Faible"},
+  
+  // VOLKSWAGEN - Rappels et pannes
+  {t:"Scandale Dieselgate",d:"Logiciel truqueur émissions NOx",s:"Mise à jour logiciel + compensation",g:"Grave"},
+  {t:"Boîte DSG7 mécatronique",d:"À-coups, calages, voyant boîte",s:"Mise à jour ou remplacement boîte",g:"Grave"},
+  {t:"Consommation huile 1.4/1.8/2.0 TSI",d:"Jusqu'à 1L/1000km sur moteurs EA888",s:"Remplacement segments de piston",g:"Grave"},
+  {t:"Chaîne distribution 1.4 TSI",d:"Allongement chaîne avant 100 000km",s:"Remplacement kit chaîne complet",g:"Très grave"},
+  {t:"Injecteurs Pompe 1.9/2.0 TDI",d:"Fuites injecteurs, démarrage difficile",s:"Remplacement injecteurs pompe",g:"Grave"},
+  {t:"FAP 2.0 TDI colmaté",d:"Voyant FAP, perte puissance",s:"Régénération ou remplacement FAP",g:"Moyenne"},
+  {t:"Volant moteur bi-masse",d:"Vibrations, bruits claquements",s:"Remplacement volant moteur + embrayage",g:"Grave"},
+  {t:"Pompe à eau 1.4/1.8/2.0 TSI",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
+  {t:"Vanne EGR 2.0 TDI",d:"Encrassement, ralenti instable",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"Turbo 1.4 TSI",d:"Perte de puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
+  
+  // BMW - Rappels et pannes
+  {t:"Chaîne distribution N47/N57",d:"Rupture chaîne côté boîte de vitesses",s:"Remplacement kit chaîne complet",g:"Très grave"},
+  {t:"Moteur N20 chaîne tendeur",d:"Rupture tendeur chaîne distribution",s:"Remplacement tendeur + chaîne",g:"Très grave"},
+  {t:"Système Valvetronic défaillant",d:"Ralenti instable, perte puissance",s:"Remplacement moteur Valvetronic",g:"Grave"},
+  {t:"Pompe haute pression",d:"Démarrage difficile, perte puissance",s:"Remplacement pompe HP",g:"Moyenne"},
+  {t:"Turbo N47/N57",d:"Perte de puissance, jeu axial",s:"Remplacement turbo + lignes",g:"Grave"},
+  {t:"Injecteurs piezo",d:"Fuites injecteurs, démarrage difficile",s:"Remplacement injecteurs + codage",g:"Grave"},
+  {t:"Boîte ZF 8 vitesses",d:"À-coups, fuites huile",s:"Vidange boîte + adaptions",g:"Moyenne"},
+  {t:"Différentiel arrière",d:"Vibrations, bruits anormaux",s:"Remplacement différentiel",g:"Grave"},
+  {t:"Suspension pneumatique",d:"Véhicule s'affaisse, voyant",s:"Remplacement soufflets + compresseur",g:"Grave"},
+  {t:"Climatisation automatique",d:"Plus de froid, fuite gaz",s:"Recharge clim + recherche fuite",g:"Faible"},
+  
+  // MERCEDES - Rappels et pannes
+  {t:"Boîte 7G-Tronic défaillante",d:"À-coups, calages, voyant boîte",s:"Mise à jour ou remplacement boîte",g:"Grave"},
+  {t:"Moteur OM651 injecteurs",d:"Injecteurs grippés, retour carburant",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"Turbo OM651/OM642",d:"Perte de puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
+  {t:"Courroie accessoires OM642",d:"Risque de rupture courroie",s:"Remplacement courroie + tendeurs",g:"Grave"},
+  {t:"Vanne EGR OM651",d:"Encrassement, perte puissance",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"FAP Mercedes",d:"Colmatage FAP, voyant allumé",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Suspension Airmatic",d:"Véhicule s'affaisse",s:"Remplacement amortisseurs + compresseur",g:"Grave"},
+  {t:"Calculateur SAM",d:"Problèmes électriques multiples",s:"Remplacement calculateur SAM",g:"Grave"},
+  {t:"Culasse fissurée",d:"Fuite liquide refroidissement",s:"Remplacement culasse",g:"Très grave"},
+  {t:"Embrayage usure",d:"Patina avant 100 000km",s:"Remplacement kit embrayage",g:"Grave"},
+  
+  // TOYOTA - Rappels et pannes
+  {t:"Consommation huile 2.0 D-4D",d:"Jusqu'à 1L/1000km",s:"Remplacement segments",g:"Grave"},
+  {t:"Injecteurs 2.0/2.2 D-4D",d:"Fuites injecteurs, retour carburant",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"Joint de culasse 2.2 D-CAT",d:"Fuite liquide, surchauffe",s:"Remplacement joint culasse",g:"Très grave"},
+  {t:"FAP Toyota",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Système hybride batterie",d:"Perte autonomie, voyant batterie",s:"Remplacement modules batterie",g:"Grave"},
+  {t:"Onduleur hybride",d:"Véhicule ne démarre plus",s:"Remplacement onduleur",g:"Très grave"},
+  {t:"Embrayage hybride",d:"À-coups, bruits",s:"Remplacement embrayage hybride",g:"Moyenne"},
+  {t:"Direction assistée électrique",d:"Direction dure, voyant",s:"Remplacement colonne direction",g:"Grave"},
+  {t:"Climatisation hybride",d:"Plus de froid en stationnement",s:"Vérification compresseur électrique",g:"Faible"},
+  {t:"Courroie accessoires",d:"Rupture courroie accessoires",s:"Remplacement courroie + tendeurs",g:"Moyenne"},
+  
+  // FORD - Rappels et pannes
+  {t:"Boîte Powershift 6DCT250",d:"À-coups, calages, embrayage usé",s:"Remplacement embrayages + mécatronique",g:"Grave"},
+  {t:"Moteur 1.0 EcoBoost courroie",d:"Courroie dans l'huile, risque casse",s:"Remplacement courroie + pompe",g:"Très grave"},
+  {t:"Turbo 1.5/2.0 EcoBlue",d:"Perte de puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
+  {t:"Injecteurs 2.0 TDCi",d:"Injecteurs grippés, retour gazole",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"FAP Ford",d:"Colmatage FAP, voyant allumé",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Embrayage usure",d:"Patina avant 80 000km",s:"Remplacement kit embrayage",g:"Grave"},
+  {t:"Pompe à eau 1.0 EcoBoost",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
+  {t:"Vanne EGR encrassée",d:"Ralenti instable, fumée",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"Alternateur défaillant",d:"Batterie ne charge plus",s:"Remplacement alternateur",g:"Moyenne"},
+  {t:"Direction assistée",d:"Direction dure, fuites",s:"Remplacement crémaillère",g:"Moyenne"},
+  
+  // AUDI - Rappels et pannes
+  {t:"Consommation huile 1.8/2.0 TFSI",d:"Jusqu'à 1L/1000km",s:"Remplacement segments piston",g:"Grave"},
+  {t:"Chaîne distribution 3.0 TDI",d:"Allongement chaîne avant 150 000km",s:"Remplacement kit chaîne",g:"Très grave"},
+  {t:"Boîte S-Tronic 7",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"},
+  {t:"Turbo 2.0 TFSI",d:"Perte de puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
+  {t:"Injecteurs 3.0 TDI",d:"Injecteurs grippés, retour carburant",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"FAP Audi",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Pompe à eau TFSI",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
+  {t:"Vanne EGR 3.0 TDI",d:"Encrassement, perte puissance",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"Volant moteur bi-masse",d:"Vibrations, claquements",s:"Remplacement volant + embrayage",g:"Grave"},
+  {t:"Quattro différentiel",d:"Bruits anormaux transmission",s:"Remplacement différentiel",g:"Grave"},
+  
+  // NISSAN - Rappels et pannes
+  {t:"Boîte Xtronic CVT",d:"À-coups, bruits, perte traction",s:"Remplacement boîte CVT",g:"Grave"},
+  {t:"Moteur 1.5 dCi injection",d:"Injecteurs grippés",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"Turbo 1.6 dCi",d:"Perte de puissance",s:"Remplacement turbo",g:"Grave"},
+  {t:"FAP Nissan",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Embrayage usure",d:"Patina avant 100 000km",s:"Remplacement kit embrayage",g:"Grave"},
+  {t:"Alternateur défaillant",d:"Batterie ne charge plus",s:"Remplacement alternateur",g:"Moyenne"},
+  {t:"Pompe à eau",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
+  {t:"Vanne EGR",d:"Encrassement, ralenti instable",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"Direction assistée",d:"Direction dure, fuites",s:"Remplacement crémaillère",g:"Moyenne"},
+  {t:"Climatisation",d:"Plus de froid",s:"Recharge clim + recherche fuite",g:"Faible"},
+  
+  // HYUNDAI/KIA - Rappels et pannes
+  {t:"Moteur 1.6 CRDi injecteurs",d:"Injecteurs grippés, retour carburant",s:"Remplacement injecteurs",g:"Grave"},
+  {t:"Turbo 1.6/1.7 CRDi",d:"Perte de puissance, jeu axial",s:"Remplacement turbo",g:"Grave"},
+  {t:"Embrayage usure prématurée",d:"Patina avant 80 000km",s:"Remplacement kit embrayage",g:"Grave"},
+  {t:"Boîte DCT 7 vitesses",d:"À-coups, mécatronique HS",s:"Remplacement mécatronique",g:"Grave"},
+  {t:"FAP Hyundai/Kia",d:"Colmatage prématuré",s:"Régénération ou remplacement",g:"Moyenne"},
+  {t:"Pompe à eau",d:"Fuite liquide refroidissement",s:"Remplacement pompe à eau",g:"Moyenne"},
+  {t:"Vanne EGR",d:"Encrassement, perte puissance",s:"Nettoyage vanne EGR",g:"Moyenne"},
+  {t:"Alternateur",d:"Batterie ne charge plus",s:"Remplacement alternateur",g:"Moyenne"},
+  {t:"Direction assistée",d:"Direction dure, fuites",s:"Remplacement crémaillère",g:"Moyenne"},
+  {t:"Climatisation",d:"Plus de froid",s:"Recharge clim",g:"Faible"},
+  
+  // Pannes générales multi-marques
+  {t:"Batterie 12V HS",d:"Véhicule ne démarre plus",s:"Remplacement batterie",g:"Faible"},
+  {t:"Démarreur défaillant",d:"Véhicule ne démarre plus",s:"Remplacement démarreur",g:"Moyenne"},
+  {t:"Alternateur HS",d:"Batterie ne charge plus, voyant batterie",s:"Remplacement alternateur",g:"Moyenne"},
+  {t:"Courroie distribution",d:"Rupture courroie, moteur cassé",s:"Remplacement kit distribution préventif",g:"Très grave"},
+  {t:"Embrayage usé",d:"Patina à l'accélération",s:"Remplacement kit embrayage",g:"Grave"},
+  {t:"Disques de frein voilés",d:"Vibrations au freinage",s:"Remplacement disques + plaquettes",g:"Moyenne"},
+  {t:"Amortisseurs fuyards",d:"Mauvaise tenue de route",s:"Remplacement amortisseurs",g:"Moyenne"},
+  {t:"Cardans usés",d:"Claquements en braquant",s:"Remplacement cardans",g:"Moyenne"},
+  {t:"Crémaillère direction",d:"Fuites, direction dure",s:"Remplacement crémaillère + géométrie",g:"Grave"},
+  {t:"Pneus usés",d:"Usure au témoin, danger",s:"Remplacement pneus",g:"Moyenne"}
+];
+
+// ============================================================
+// FONCTION DE DÉTECTION DU TYPE DE MOTEUR
 // ============================================================
 function detecterTypeMoteur(motorisation, marque, modele) {
   const moto = motorisation.toLowerCase();
@@ -490,60 +620,9 @@ function detecterTypeMoteur(motorisation, marque, modele) {
   return 'Essence';
 }
 
-const PANNES = [
-  {t:"Courroie distribution humide",d:"Désagrégation courroie dans l'huile moteur.",s:"Remplacement courroie + pompe à huile",g:"Très grave"},
-  {t:"Chaîne distribution",d:"Usure prématurée chaîne distribution.",s:"Remplacement kit chaîne complet",g:"Grave"},
-  {t:"Vanne EGR",d:"Encrassement ou fuite vanne EGR.",s:"Nettoyage ou remplacement EGR",g:"Moyenne"},
-  {t:"FAP encrassé",d:"Filtre à particules colmaté.",s:"Remplacement FAP + régénération",g:"Moyenne"},
-  {t:"Turbo",d:"Fuite turbo ou jeu axial.",s:"Remplacement turbo + lignes",g:"Grave"},
-  {t:"Injecteurs",d:"Injecteurs grippés ou fuyards.",s:"Remplacement injecteurs + codage",g:"Grave"},
-  {t:"AdBlue",d:"Cristallisation ou pompe HS.",s:"Remplacement réservoir/injecteur",g:"Moyenne"},
-  {t:"Embrayage",d:"Usure prématurée embrayage.",s:"Remplacement kit embrayage",g:"Grave"},
-  {t:"Boîte vitesse",d:"Problème passage vitesses.",s:"Vidange ou remplacement",g:"Grave"},
-  {t:"Batterie HT",d:"Défaut batterie haute tension.",s:"Diagnostic BMS + remplacement",g:"Grave"},
-  {t:"Alternateur",d:"Alternateur ne charge plus.",s:"Remplacement alternateur",g:"Moyenne"},
-  {t:"Démarreur",d:"Démarreur HS.",s:"Remplacement démarreur",g:"Moyenne"},
-  {t:"Fuite liquide refroidissement",d:"Fuite radiateur ou durites.",s:"Remplacement pièce + purge",g:"Moyenne"},
-  {t:"Pompe à eau",d:"Pompe fuyarde ou grippée.",s:"Remplacement pompe à eau",g:"Moyenne"},
-  {t:"Sonde lambda",d:"Sonde défectueuse.",s:"Remplacement sonde lambda",g:"Faible"},
-  {t:"Bobines",d:"Bobines d'allumage HS.",s:"Remplacement bobines",g:"Faible"},
-  {t:"Bougies",d:"Bougies usées.",s:"Remplacement bougies",g:"Faible"},
-  {t:"Disques frein",d:"Disques voilés ou usés.",s:"Remplacement disques + plaquettes",g:"Moyenne"},
-  {t:"Amortisseurs",d:"Amortisseurs fuyards.",s:"Remplacement amortisseurs",g:"Moyenne"},
-  {t:"Cardans",d:"Soufflets déchirés.",s:"Remplacement cardans",g:"Moyenne"},
-  {t:"Crémaillère direction",d:"Fuite crémaillère.",s:"Remplacement + géométrie",g:"Grave"},
-  {t:"Climatisation",d:"Perte de froid.",s:"Recharge ou compresseur",g:"Faible"},
-  {t:"Calculateur moteur",d:"Calculateur défectueux.",s:"Reprogrammation ou remplacement",g:"Grave"},
-  {t:"Capteur ABS",d:"Capteur ABS HS.",s:"Remplacement capteur",g:"Moyenne"},
-  {t:"Capteur pression pneus",d:"Capteurs TPMS HS.",s:"Remplacement capteurs",g:"Faible"},
-  {t:"Échappement",d:"Fuite échappement.",s:"Remplacement section",g:"Moyenne"},
-  {t:"Catalyseur",d:"Catalyseur colmaté.",s:"Remplacement catalyseur",g:"Grave"},
-  {t:"Batterie 12V",d:"Batterie déchargée.",s:"Remplacement batterie",g:"Faible"},
-  {t:"Vitres électriques",d:"Moteur lève-vitre HS.",s:"Remplacement moteur",g:"Faible"},
-  {t:"Airbag",d:"Témoin airbag allumé.",s:"Diagnostic calculateur",g:"Grave"},
-  {t:"Autoradio",d:"Autoradio HS.",s:"Remplacement autoradio",g:"Faible"},
-  {t:"Caméra recul",d:"Caméra ne s'affiche plus.",s:"Remplacement caméra",g:"Faible"},
-  {t:"Jantes",d:"Jantes voilées.",s:"Redressage ou remplacement",g:"Moyenne"},
-  {t:"Pneus",d:"Pneus usés.",s:"Remplacement pneus",g:"Moyenne"},
-  {t:"Roulements",d:"Roulements bruyants.",s:"Remplacement roulements",g:"Moyenne"},
-  {t:"Triangles suspension",d:"Triangles usés.",s:"Remplacement + géométrie",g:"Moyenne"},
-  {t:"Embrayage usé",d:"Patina à l'accélération.",s:"Remplacement kit embrayage",g:"Grave"},
-  {t:"Chaîne détendue",d:"Jeu excessif chaîne.",s:"Réglage tension + lubrification",g:"Moyenne"},
-  {t:"Couronne usée",d:"Dents couronne usées.",s:"Remplacement couronne + pignon",g:"Moyenne"},
-  {t:"Fourche qui fuit",d:"Fuite huile fourche.",s:"Remplacement joints spi + huile",g:"Moyenne"},
-  {t:"Amortisseur HS",d:"Amortisseur arrière fuyard.",s:"Remplacement amortisseur",g:"Moyenne"},
-  {t:"Plaquettes usées",d:"Plaquettes de frein usées.",s:"Remplacement plaquettes",g:"Moyenne"},
-  {t:"Disques voilés",d:"Disques de frein voilés.",s:"Remplacement disques",g:"Moyenne"},
-  {t:"Carburateur encrassé",d:"Carburateur sale.",s:"Nettoyage carburateur",g:"Faible"},
-  {t:"Bougies encrassées",d:"Bougies noires ou usées.",s:"Remplacement bougies",g:"Faible"},
-  {t:"Filtre à air sale",d:"Filtre à air colmaté.",s:"Remplacement filtre à air",g:"Faible"},
-  {t:"Courroie usée",d:"Courroie de transmission usée.",s:"Remplacement courroie",g:"Moyenne"},
-  {t:"Variateur usé",d:"Galets ou variateur usés.",s:"Remplacement kit variateur",g:"Moyenne"},
-  {t:"Pneu crevé",d:"Pneu percé ou usé.",s:"Réparation ou remplacement pneu",g:"Moyenne"},
-  {t:"Batterie faible",d:"Batterie ne tient plus charge.",s:"Recharge ou remplacement",g:"Faible"},
-  {t:"Phare HS",d:"Ampoule phare grillée.",s:"Remplacement ampoule",g:"Faible"}
-];
-
+// ============================================================
+// GÉNÉRATION AUTOMATIQUE DES FICHES
+// ============================================================
 const annees = [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
 let id = 1;
 
@@ -613,3 +692,4 @@ if (typeof window !== 'undefined') {
 
 console.log(' Database Technique Auto by Kevin - ' + DATABASE.fiches.length + ' fiches');
 console.log(' Voitures + 🏍️ Motos/Scooters | 2016-2026');
+console.log('✅ Base de données complète avec rappels et pannes connus');
